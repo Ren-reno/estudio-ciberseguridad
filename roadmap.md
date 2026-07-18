@@ -185,6 +185,38 @@ From: Ren-reno <reinaldo.codoceo@inacapmail.cl>) con progreso.md actualizado: ma
 resultado (X/10), y si el corte dio negativo, agregá a preguntas pendientes qué fase reforzar.
 ```
 
+### C.1) Chequeo de bases — variante temprana (Módulos 1-4, previo a arrancar el roadmap)
+
+Se usa cuando ya existe avance previo real en las bases (Módulos 1-4) hecho fuera de este
+sistema, para evitar repetir de cero lo que ya está sólido sin arriesgarse a saltar sobre un
+hueco no detectado. Mismo mecanismo que C, aplicado antes de la Sesión 1.1 en vez de antes
+de Fase 5.
+
+```
+Vamos a hacer un Chequeo de Bases sobre Módulos 1-4 (TCP/IP, Subnetting/routing, DNS/HTTP,
+Linux) antes de arrancar el roadmap. Tengo avance previo real en estos temas, documentado en
+progreso.md (sección "Avance previo").
+
+Hacéme 8-10 preguntas de aplicación (no de definición) que crucen conceptos de al menos 2 de
+estos 4 módulos en la misma pregunta. Ejemplo del tipo que buscamos: "¿por qué ARP necesita
+broadcast si ya existe una tabla de routing basada en IP?" — no "¿qué es ARP?".
+
+Formato (60 min):
+- 45 min: las 8-10 preguntas, una por una. No des la respuesta ni pistas hasta que yo responda
+  algo (aunque esté incompleto o mal) o me trabe más de 1 minuto. Recién ahí corregís y explicás.
+- 15 min: contamos cuántas salieron bien.
+
+Regla de corte:
+- 7 o más de 10 bien → saltamos directo a Módulo 5, marcando Módulos 1-4 como completados.
+- Menos de 7 → identificamos qué módulo(s) específicos (no los 4 completos) quedaron flojos,
+  y planificamos 1-2 sesiones de refuerzo solo en esos antes de Módulo 5.
+
+Al final generame un patch en formato de parche de email de Git (header From/Date/Subject,
+From: Ren-reno <reinaldo.codoceo@inacapmail.cl>) con progreso.md actualizado: marcá este
+chequeo como hecho con el resultado (X/10), actualizá "Próxima sesión a hacer" según el
+resultado, y si corresponde marcá Módulos 1-4 como completados en la sección correspondiente.
+```
+
 ---
 
 # FASE 1 — Infraestructura base
