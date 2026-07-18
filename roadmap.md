@@ -217,6 +217,42 @@ chequeo como hecho con el resultado (X/10), actualizá "Próxima sesión a hacer
 resultado, y si corresponde marcá Módulos 1-4 como completados en la sección correspondiente.
 ```
 
+### C.2) Repaso de verificación Módulos 1-4 (una vez, después de C.1 si el resultado dio bajo)
+
+4 sesiones, una por módulo, más cortas que una sesión de teoría normal — verifican si el
+avance previo real está firme en cada módulo específico, sin repetir la teoría completa.
+Reemplaza el chequeo cruzado de C.1 cuando ese resultado no fue suficiente para decidir con
+confianza qué saltar.
+
+**Instrucción especial "saltar", válida SOLO en estas 4 sesiones (1.rev a 4.rev):** si en
+cualquier momento el usuario escribe "saltar", Claude no debe autorellenar el resultado
+como dominado sin verificar. En su lugar hace 1 sola pregunta corta (2-3 min) sobre el
+concepto de esa sesión. Si se responde bien, ahí sí autorellena resumen/bitácora/progreso y
+se avanza. Si se responde mal o con duda, se sigue con el formato normal de la sesión — el
+"saltar" no debe usarse para maquillar un hueco real, solo para ahorrar trámite cuando algo
+ya está firme. Esta instrucción NO aplica a ninguna sesión fuera de este bloque de 4.
+
+```
+Vamos a hacer la sesión de Repaso de Verificación [N].rev, Módulo [X] — [nombre del módulo].
+
+Tengo avance previo real en este módulo (ver progreso.md, sección "Avance previo"). El
+objetivo de hoy es verificar qué tan firme está, no enseñar de cero.
+
+Formato (30-40 min, más corto que una sesión normal):
+- Elegí vos 2-3 conceptos centrales del módulo — sin decírmelos antes de preguntarlos.
+- Preguntame uno por uno. No des la respuesta ni pistas hasta que yo responda algo o me
+  trabe más de 1 minuto.
+- Para lo que salga flojo, un mini-refuerzo de la parte que falló, no la clase completa.
+
+Si en cualquier momento escribo "saltar": no autorellenes como dominado sin verificar.
+Hacé una sola pregunta corta de ese concepto puntual. Si la respondo bien, ahí sí generá
+todo automáticamente y seguimos. Si la respondo mal, seguimos con el formato normal.
+
+Al final generame un patch en formato de parche de email de Git (header From/Date/Subject,
+From: Ren-reno <reinaldo.codoceo@inacapmail.cl>) con progreso.md actualizado: resultado de
+este repaso, y si el módulo completo quedó firme, marcalo como completado.
+```
+
 ---
 
 # FASE 1 — Infraestructura base

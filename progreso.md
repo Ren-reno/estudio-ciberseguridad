@@ -32,9 +32,48 @@ Bases sobre Módulos 1-4 para decidir qué repasar y qué saltar, en vez de repe
 Variante temprana del mecanismo de "Chequeo de Bases" (normalmente usado en la transición
 Fase 4→5), aplicada acá para aprovechar el avance previo sin arriesgar huecos no detectados.
 
-- [ ] Hecho — resultado: __ / 10 — fecha: __
+- [x] Hecho — resultado: 4.5 / 10 — fecha: 2026-07-20
 - Regla de corte: 7+ → saltar directo a Módulo 5. Menos de 7 → identificar qué módulo(s)
   específicos reforzar antes de avanzar (no repetir los 4 completos).
+- Resultado real: sólido en Módulos 2 y 3 (con hueco puntual en TLS/certificados, tema de
+  Módulo 5). Módulo 1 sin cobertura real en el chequeo (ninguna pregunta lo cubrió a fondo).
+  Módulo 4 con hueco claro (SUID/passwd, cadenas de iptables).
+
+**Decisión:** en vez de confiar en una muestra chica de 8 preguntas repartidas en 4 módulos,
+se hace 1 sesión de repaso corto por cada uno de los 4 módulos antes de decidir qué saltar
+y qué reforzar. Ver "Repaso de verificación Módulos 1-4" abajo.
+
+---
+
+## Repaso de verificación Módulos 1-4 — instrucción especial "saltar"
+
+**Solo válido para estas 4 sesiones de repaso (1.rev, 2.rev, 3.rev, 4.rev). No aplica a
+ninguna otra sesión del roadmap de acá en adelante — esto no se repite en Módulos 5+.**
+
+En cada una de estas 4 sesiones, si en cualquier momento escribo la palabra **"saltar"**,
+la instrucción para Claude es:
+
+1. NO autorellenar el resultado como si el concepto estuviera dominado sin haberlo puesto
+   a prueba. "Saltar" ahorra el trabajo MANUAL de bitácora/resumen/progreso.md — no
+   reemplaza la verificación.
+2. En su lugar, Claude hace **una sola pregunta corta de verificación** (2-3 min, no la
+   sesión completa) sobre el concepto que tocaba esa sesión.
+3. Si la respondo bien → Claude autorellena el resto (resumen de sesión, línea de
+   progreso.md, bitácora) dando el concepto por cubierto, y seguimos a la siguiente sesión
+   de repaso sin más trámite.
+4. Si la respondo mal o dudo mucho → Claude NO autorellena nada. Seguimos con la sesión de
+   repaso normal (formato completo) en ese concepto puntual, porque eso indica que el hueco
+   es real, igual que pasó con Módulo 4 en el chequeo cruzado de hoy.
+
+El objetivo de "saltar" es ahorrar tiempo administrativo cuando algo genuinamente ya está
+firme, no maquillar un hueco para avanzar más rápido en el papel.
+
+### Checklist de las 4 sesiones
+
+- [ ] 1.rev — Módulo 1 (TCP/IP) — resultado: __
+- [ ] 2.rev — Módulo 2 (Subnetting/routing) — resultado: __
+- [ ] 3.rev — Módulo 3 (DNS/HTTP) — resultado: __
+- [ ] 4.rev — Módulo 4 (Linux) — resultado: __ (ya sabemos que acá hay hueco: SUID/passwd, cadenas iptables)
 
 ---
 
