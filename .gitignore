@@ -1,0 +1,40 @@
+# === Credenciales y secretos — NUNCA deben llegar al repo ===
+# Esto aplica sobre todo desde Fase 4-5 (Docker, Terraform, AWS)
+*.pem
+*.key
+*.pfx
+.env
+.env.*
+*credentials*
+*secrets*
+.aws/
+terraform.tfstate
+terraform.tfstate.backup
+.terraform/
+*.tfvars
+
+# === Outputs de comandos que pueden exponer datos reales ===
+# nmap, wireshark, tcpdump, y similares pueden mostrar tu IP real,
+# tu red doméstica, tu hostname, o el de tu ISP. Si un output de un
+# lab es útil para mostrar, se transcribe a mano en el .md de la
+# sesión con los datos sensibles reemplazados (ej: 192.168.1.X en vez
+# de tu IP real), no se sube el output crudo del comando.
+*.pcap
+*.pcapng
+raw-output/
+scan-results/
+
+# === Archivos de VMs y entornos de lab ===
+*.vmdk
+*.ova
+*.qcow2
+.vagrant/
+
+# === Basura común de SO / editor ===
+.DS_Store
+Thumbs.db
+*.swp
+__pycache__/
+*.pyc
+node_modules/
+.vscode/
