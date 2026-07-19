@@ -11,13 +11,20 @@
 **Cada sesión es una conversación NUEVA, no una continuación del chat anterior.** Esto es a propósito: si acumulás 20 sesiones en un mismo chat, cada vez pesa más contexto viejo que no aporta a la lección de hoy. El `progreso.md` del repo reemplaza esa memoria — es portable, funciona igual en Claude, ChatGPT, o cualquier otro LLM, y no depende de que la conversación siga viva ni de que el repo esté en una máquina en particular (con `git pull` lo tenés actualizado donde sea).
 
 **Flujo de cada sesión:**
-1. `git pull` (si trabajás desde más de una máquina).
-2. Abrí una conversación nueva.
-3. Subí `progreso.md` y `roadmap.md` (si es la primera vez con ese LLM en esa conversación).
-4. Usá el prompt de abajo.
-5. Al terminar: guardá las notas de la sesión en `sesiones/sesion-N.N.md`, actualizá la línea en `progreso.md`, y `git add . && git commit -m "sesion N.N: [tema]"`.
+1. Abrí una conversación nueva.
+2. Pegá tu `progreso.md` actual (o simplemente decí "voy en la sesión X.X" si ya compartiste el roadmap antes en esa conversación).
+3. Usá el prompt de abajo.
+4. Al terminar, Claude te entrega un archivo `.patch` con el nuevo `sesiones/sesion-N.N.md` ya escrito y la línea de `progreso.md` ya actualizada — no hace falta que copies ni edites nada a mano.
+5. Aplicalo con 3 comandos:
+   ```bash
+   git apply sesion-N.N.patch
+   git add .
+   git commit -m "sesion N.N"
+   ```
 
-Un commit por sesión te da un historial real y verificable de tu propio avance — no solo una lista que pudiste olvidar actualizar.
+Un commit por sesión te da un historial real y verificable de tu propio avance. Lo único manual de acá en adelante es lo que solo vos podés escribir: tu resolución de ejercicios si querés guardarla aparte, y la bitácora de los labs (ver sección de labs más abajo).
+
+**Si el patch falla al aplicar** (por ejemplo porque tu `progreso.md` real quedó distinto al que Claude asumió), `git apply` te va a avisar del conflicto — en ese caso pegale a Claude tu `progreso.md` real y te regenera el patch contra ese estado.
 
 ### Prompt de inicio de sesión
 
@@ -36,8 +43,9 @@ Formato obligatorio:
 
 Si en el camino surge una idea relacionada pero fuera de esto, decime
 "anotalo para después" y seguimos — no la desarrolles ahora aunque sea interesante.
-Al final decime en una frase qué debería anotar en progreso.md, y dame un resumen
-breve en markdown para guardar en sesiones/sesion-[N.N].md.
+Al final, generame un patch (.patch) con: sesiones/sesion-[N.N].md (resumen de la sesión
+en markdown) y la línea correspondiente actualizada en progreso.md. Quiero poder aplicarlo
+con git apply directamente, sin copiar texto a mano.
 
 Esta sesión termina en 60 minutos reales, cronometrados.
 ```
@@ -57,6 +65,7 @@ Para cada sub-sesión definí: qué parte puntual se resuelve hoy, y qué debe q
 "cerrado" al final de esa hora (aunque el lab completo siga abierto).
 
 No me des la solución de ninguna parte del lab, solo el enunciado y el plan de sub-sesiones.
+Generame esto como patch con labs/modulo-[X]/enunciado.md, para aplicar con git apply.
 ```
 
 **Paso 2 — Al empezar cada sub-sesión del lab:** le pasás el enunciado fijo + la bitácora de avance (`labs/modulo-N/bitacora.md`, que vos actualizás al final de cada sub-sesión con qué lograste y dónde quedaste). Vos resolvés — Claude no te da la solución, solo puede confirmar si tu enfoque va bien o corregir si te trabás en algo puntual.
@@ -104,6 +113,9 @@ Formato obligatorio (60 min):
   la parte que falló.
 - 5-10 min: cerrá con qué quedó firme y qué anotamos en preguntas pendientes para reforzar más adelante.
 
+Al final generame un patch con progreso.md actualizado: marcá este repaso como hecho en la
+sección de mecanismos de refuerzo, y agregá a preguntas pendientes lo que haya quedado flojo.
+
 No hay ejercicio nuevo ni gancho de salida — es pura recuperación. Termina en 60 minutos reales, cronometrados.
 ```
 
@@ -123,6 +135,9 @@ Formato obligatorio (60 min):
   normal. No hace falta que estén relacionadas entre sí.
 - 10 min: marcá como resueltas las que cerramos hoy, dejá el resto tal cual para la próxima limpieza.
   Si quedan más de 6-7 sin resolver, avisame — se están acumulando más rápido de lo que se cierran.
+
+Al final generame un patch con progreso.md actualizado: marcá esta limpieza como hecha, y
+actualizá la lista de preguntas pendientes (quitando las resueltas, dejando el resto).
 ```
 
 ### C) Chequeo de bases (única vez, antes de Fase 5)
@@ -146,6 +161,9 @@ Regla de corte:
 - Menos de 7 → no arrancamos Fase 5 todavía. Identificamos qué fase específica (1, 2, 3 o 4) quedó
   floja y planificamos 1-2 sesiones de refuerzo antes de tocar AWS. Esto no es un fracaso — es
   exactamente para esto que existe el chequeo: mejor encontrarlo acá que a mitad del Módulo 17.
+
+Al final generame un patch con progreso.md actualizado: marcá el chequeo como hecho con el
+resultado (X/10), y si el corte dio negativo, agregá a preguntas pendientes qué fase reforzar.
 ```
 
 ---
