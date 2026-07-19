@@ -48,6 +48,74 @@ Para las sesiones de laboratorio grande, usás un prompt distinto (está al fina
 
 ---
 
+## Mecanismos de refuerzo (3 tipos de sesión extra)
+
+Además de las sesiones normales de teoría y los labs, hay tres tipos de sesión que se insertan en puntos fijos de la secuencia. Resuelven algo que el gancho de entrada/salida no cubre: ese gancho solo conecta con la sesión inmediatamente anterior, no reactiva nada de varios módulos atrás. Sin esto, el contenido del Módulo 1 va a estar bastante olvidado para cuando llegues al Módulo 17.
+
+Revisá la tabla de la última sección de este documento antes de cada sesión nueva para saber si hoy toca teoría normal, lab, o uno de estos tres.
+
+### A) Repaso espaciado
+
+Se hace después del lab de los Módulos 2, 6, 10, 14 y 18 — nunca sobre el módulo recién cerrado ni el anterior a ese (esos siguen frescos por el lab), sino sobre el par de módulos anterior a esos dos.
+
+```
+Vamos a hacer una Sesión de Repaso Espaciado del roadmap de Cloud Security, después de cerrar el Módulo [X].
+
+Elegí vos 3-4 conceptos de los Módulos [módulos a repasar según la tabla] — sin decírmelos antes de preguntarlos.
+
+Formato obligatorio (60 min):
+- 30-35 min: preguntame los conceptos uno por uno. No des la respuesta ni pistas hasta que yo
+  responda algo (aunque esté incompleto o mal) o me trabe más de 1 minuto. Recién ahí corregís y explicás.
+- 15-20 min: para cada concepto que salió flojo, un mini-refuerzo — no una clase completa, solo
+  la parte que falló.
+- 5-10 min: cerrá con qué quedó firme y qué anotamos en preguntas pendientes para reforzar más adelante.
+
+No hay ejercicio nuevo ni gancho de salida — es pura recuperación. Termina en 60 minutos reales, cronometrados.
+```
+
+### B) Limpieza de preguntas pendientes
+
+Se hace después del lab de los Módulos 4, 8, 12, 16 y 20. Es el único momento donde el archivo de "preguntas pendientes" de `progreso.md`/`notas/` se revisa y se cierra — sin esto, esa lista solo crece y no se resuelve nunca.
+
+```
+Vamos a hacer una Sesión de Limpieza de Preguntas Pendientes, después de cerrar el Módulo [X].
+
+Te paso el contenido completo de mi archivo de preguntas pendientes: [pegar acá].
+
+Formato obligatorio (60 min):
+- 5-10 min: de toda la lista, elegimos juntos las 2-3 preguntas más relevantes para lo que viene
+  (priorizá las que conecten con los próximos 2 módulos, si se puede identificar).
+- 35-40 min: desarrollamos esas 2-3 preguntas con la misma profundidad que una sesión de teoría
+  normal. No hace falta que estén relacionadas entre sí.
+- 10 min: marcá como resueltas las que cerramos hoy, dejá el resto tal cual para la próxima limpieza.
+  Si quedan más de 6-7 sin resolver, avisame — se están acumulando más rápido de lo que se cierran.
+```
+
+### C) Chequeo de bases (única vez, antes de Fase 5)
+
+Se hace después del lab del Módulo 15 (cierre de Fase 4), antes de arrancar el Módulo 16. Es más que una sesión de repaso — es un gate real: si las bases de Fases 1-4 no están firmes, no tiene sentido entrar a AWS todavía.
+
+```
+Vamos a hacer un Chequeo de Bases antes de arrancar Fase 5 (Cloud Security AWS).
+
+Hacéme 8-10 preguntas de aplicación (no de definición) que crucen conceptos de al menos 2 de las
+Fases 1-4 en la misma pregunta. Ejemplo del tipo que buscamos: "¿por qué un Security Group en AWS
+va a ser stateful, si ya sé que TCP lo es y UDP no?" — no "¿qué es un Security Group?".
+
+Formato (60 min):
+- 45 min: las 8-10 preguntas, una por una, mismo criterio que en el repaso espaciado (no des la
+  respuesta hasta que yo responda o me trabe).
+- 15 min: contamos cuántas salieron bien.
+
+Regla de corte:
+- 7 o más de 10 bien → seguimos directo al Módulo 16.
+- Menos de 7 → no arrancamos Fase 5 todavía. Identificamos qué fase específica (1, 2, 3 o 4) quedó
+  floja y planificamos 1-2 sesiones de refuerzo antes de tocar AWS. Esto no es un fracaso — es
+  exactamente para esto que existe el chequeo: mejor encontrarlo acá que a mitad del Módulo 17.
+```
+
+---
+
 # FASE 1 — Infraestructura base
 
 ## MÓDULO 1 — TCP/IP a nivel de ingeniería
@@ -171,6 +239,7 @@ Para las sesiones de laboratorio grande, usás un prompt distinto (está al fina
 
 # FASE 3 — Aplicaciones web y APIs
 *La capa donde vive el 90% de las vulnerabilidades en producción real.*
+*Prerequisito: labs de Fase 2 entregados.*
 
 ## MÓDULO 9 — HTTP avanzado, APIs REST y seguridad de APIs
 
@@ -218,6 +287,7 @@ Para las sesiones de laboratorio grande, usás un prompt distinto (está al fina
 
 # FASE 4 — DevOps/SecOps e Infraestructura como Código
 *El contexto donde va a vivir tu seguridad cloud.*
+*Prerequisito: labs de Fase 3 entregados.*
 
 ## MÓDULO 12 — Docker y seguridad de contenedores
 
@@ -275,7 +345,7 @@ Para las sesiones de laboratorio grande, usás un prompt distinto (está al fina
 ---
 
 # FASE 5 — Cloud Security (AWS)
-*El destino. Llegás acá con bases sólidas o llegás sin entender nada — por eso las 4 fases anteriores.*
+*El destino. Llegás acá con bases sólidas o llegás sin entender nada — por eso el Chequeo de Bases (sección "Mecanismos de refuerzo" al inicio de este documento) antes de arrancar el Módulo 16.*
 
 ## MÓDULO 16 — AWS: arquitectura y modelo de seguridad compartida
 
@@ -346,10 +416,28 @@ Para las sesiones de laboratorio grande, usás un prompt distinto (está al fina
 
 ---
 
+## Dónde se insertan los mecanismos de refuerzo
+
+| Después del lab de... | Sesión nueva | Antes de arrancar... |
+|---|---|---|
+| Módulo 2 | Repaso espaciado (Módulo 1) | Módulo 3 |
+| Módulo 4 | Limpieza de preguntas pendientes | Módulo 5 |
+| Módulo 6 | Repaso espaciado (Módulos 3-4) | Módulo 7 |
+| Módulo 8 | Limpieza de preguntas pendientes | Módulo 9 |
+| Módulo 10 | Repaso espaciado (Módulos 7-8) | Módulo 11 |
+| Módulo 12 | Limpieza de preguntas pendientes | Módulo 13 |
+| Módulo 14 | Repaso espaciado (Módulos 11-12) | Módulo 15 |
+| Módulo 15 | Chequeo de bases Fase 4→5 | Módulo 16 |
+| Módulo 16 | Limpieza de preguntas pendientes | Módulo 17 |
+| Módulo 18 | Repaso espaciado (Módulos 15-16) | Módulo 19 |
+| Módulo 20 | Limpieza de preguntas pendientes (cierre) | Fin del programa |
+
+Los números de esta tabla (cada 4 módulos, 2 conceptos por módulo repasado, umbral de 7/10 en el chequeo de bases) son un punto de partida razonable, no una regla fija. Si en la práctica el repaso queda corto o sobra tiempo, ajustalos — lo único que importa es que el mecanismo exista y se use, no el número exacto.
+
 ## Recordatorio de uso
 
 - **1 sesión = 1 fila de la tabla.** No avances de fila sin cronómetro puesto.
 - **Cada sesión, conversación nueva** — el `progreso.md` es tu memoria portable, no el historial del chat.
 - **El lab del módulo es aparte**, y solo cuando terminaste todas las filas de teoría de ese módulo.
-- Si en medio de una sesión te surge una pregunta interesante fuera de la fila de hoy: va a la sección de "preguntas pendientes" de `progreso.md`, y seguís. Esas preguntas son material para sesiones futuras, no para expandir la de hoy.
-- Total estimado: ~95 sesiones de teoría (45-60 min c/u) + ~40-50 sesiones de laboratorio repartidas en los 20 módulos. A 1h/día, esto es un programa de varios meses — y eso está bien, porque es sostenible.
+- Si en medio de una sesión te surge una pregunta interesante fuera de la fila de hoy: va a la sección de "preguntas pendientes" de `progreso.md`, y seguís. Esas preguntas son material para sesiones futuras, no para expandir la de hoy — y sí tienen un momento asignado para cerrarse (ver tabla de arriba).
+- Total estimado: ~95 sesiones de teoría + ~40-50 de laboratorio + 11 sesiones de refuerzo (5 repasos, 5 limpiezas, 1 chequeo de bases) = ~146-156 sesiones de ~1h. A 1h/día, esto es un programa de varios meses — y eso está bien, porque es sostenible.

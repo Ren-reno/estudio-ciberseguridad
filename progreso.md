@@ -16,11 +16,26 @@ solo el resumen de una frase y el link.
 
 ---
 
+## Mecanismos de refuerzo (marcar cuando se hacen)
+
+- [ ] Repaso espaciado — Módulo 1 (después del lab de Módulo 2)
+- [ ] Limpieza de pendientes #1 (después del lab de Módulo 4)
+- [ ] Repaso espaciado — Módulos 3-4 (después del lab de Módulo 6)
+- [ ] Limpieza de pendientes #2 (después del lab de Módulo 8)
+- [ ] Repaso espaciado — Módulos 7-8 (después del lab de Módulo 10)
+- [ ] Limpieza de pendientes #3 (después del lab de Módulo 12)
+- [ ] Repaso espaciado — Módulos 11-12 (después del lab de Módulo 14)
+- [ ] Chequeo de bases Fase 4→5 (después del lab de Módulo 15) — resultado: __ / 10
+- [ ] Limpieza de pendientes #4 (después del lab de Módulo 16)
+- [ ] Repaso espaciado — Módulos 15-16 (después del lab de Módulo 18)
+- [ ] Limpieza de pendientes #5 — cierre (después del lab de Módulo 20)
+
+---
+
 ## Preguntas pendientes (las que surgen en sesión y no se desarrollan ahí)
 
-Cuando en una sesión te digan "anotalo para después", va acá. Revisá esta lista cada vez que
-empieces un módulo nuevo — muchas se resuelven solas cuando llega la fila correspondiente,
-tachalas si es el caso.
+Cuando en una sesión te digan "anotalo para después", va acá. Se revisan y cierran en las
+sesiones de "Limpieza de pendientes" (ver tabla de arriba) — no quedan colgadas para siempre.
 
 - (vacío por ahora)
 
