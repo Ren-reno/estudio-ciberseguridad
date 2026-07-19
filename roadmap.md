@@ -14,17 +14,22 @@
 1. Abrí una conversación nueva.
 2. Pegá tu `progreso.md` actual (o simplemente decí "voy en la sesión X.X" si ya compartiste el roadmap antes en esa conversación).
 3. Usá el prompt de abajo.
-4. Al terminar, Claude te entrega un archivo `.patch` con el nuevo `sesiones/sesion-N.N.md` ya escrito y la línea de `progreso.md` ya actualizada — no hace falta que copies ni edites nada a mano.
-5. Aplicalo con 3 comandos:
+4. Al terminar, Claude te entrega un archivo `.patch` con formato de parche de email de Git (header `From:`/`Date:`/`Subject:` + el diff), listo para `git am`. Trae el nuevo `sesiones/sesion-N.N.md` ya escrito y la línea de `progreso.md` ya actualizada — no hace falta que copies ni edites nada a mano.
+5. Aplicalo con 1 solo comando (aplica el diff Y crea el commit atribuido a vos en el mismo paso):
    ```bash
-   git apply sesion-N.N.patch
-   git add .
-   git commit -m "sesion N.N"
+   git am sesion-N.N.patch
    ```
 
-Un commit por sesión te da un historial real y verificable de tu propio avance. Lo único manual de acá en adelante es lo que solo vos podés escribir: tu resolución de ejercicios si querés guardarla aparte, y la bitácora de los labs (ver sección de labs más abajo).
+**Header de autoría fijo** que debe llevar todo patch generado, primeras líneas del archivo:
+```
+From: Ren-reno <reinaldo.codoceo@inacapmail.cl>
+Date: [fecha del día]
+Subject: [PATCH] sesion N.N: [tema breve]
+```
 
-**Si el patch falla al aplicar** (por ejemplo porque tu `progreso.md` real quedó distinto al que Claude asumió), `git apply` te va a avisar del conflicto — en ese caso pegale a Claude tu `progreso.md` real y te regenera el patch contra ese estado.
+Un commit por sesión, ya atribuido a vos, te da un historial real y verificable de tu propio avance. Lo único manual de acá en adelante es lo que solo vos podés escribir: tu resolución de ejercicios si querés guardarla aparte, y la bitácora de los labs (ver sección de labs más abajo).
+
+**Si el patch falla al aplicar** (por ejemplo porque tu `progreso.md` real quedó distinto al que Claude asumió), `git am` te va a avisar del conflicto y te va a dejar en medio de un am a resolver — corré `git am --abort` para cancelar limpio, pegale a Claude tu `progreso.md` real, y te regenera el patch contra ese estado.
 
 ### Prompt de inicio de sesión
 
@@ -43,9 +48,14 @@ Formato obligatorio:
 
 Si en el camino surge una idea relacionada pero fuera de esto, decime
 "anotalo para después" y seguimos — no la desarrolles ahora aunque sea interesante.
-Al final, generame un patch (.patch) con: sesiones/sesion-[N.N].md (resumen de la sesión
-en markdown) y la línea correspondiente actualizada en progreso.md. Quiero poder aplicarlo
-con git apply directamente, sin copiar texto a mano.
+Al final, generame un patch (.patch) en formato de parche de email de Git, con header:
+From: Ren-reno <reinaldo.codoceo@inacapmail.cl>
+Date: [fecha de hoy]
+Subject: [PATCH] sesion N.N: [tema]
+
+El patch debe incluir sesiones/sesion-[N.N].md (resumen de la sesión en markdown) y la
+línea correspondiente actualizada en progreso.md. Quiero poder aplicarlo con git am
+directamente, sin copiar texto a mano.
 
 Esta sesión termina en 60 minutos reales, cronometrados.
 ```
@@ -65,7 +75,12 @@ Para cada sub-sesión definí: qué parte puntual se resuelve hoy, y qué debe q
 "cerrado" al final de esa hora (aunque el lab completo siga abierto).
 
 No me des la solución de ninguna parte del lab, solo el enunciado y el plan de sub-sesiones.
-Generame esto como patch con labs/modulo-[X]/enunciado.md, para aplicar con git apply.
+Generame esto como patch en formato de parche de email de Git, con header:
+From: Ren-reno <reinaldo.codoceo@inacapmail.cl>
+Date: [fecha de hoy]
+Subject: [PATCH] lab modulo N: enunciado
+
+Debe incluir labs/modulo-[X]/enunciado.md, para aplicar con git am.
 ```
 
 **Paso 2 — Al empezar cada sub-sesión del lab:** le pasás el enunciado fijo + la bitácora de avance (`labs/modulo-N/bitacora.md`, que vos actualizás al final de cada sub-sesión con qué lograste y dónde quedaste). Vos resolvés — Claude no te da la solución, solo puede confirmar si tu enfoque va bien o corregir si te trabás en algo puntual.
@@ -113,7 +128,9 @@ Formato obligatorio (60 min):
   la parte que falló.
 - 5-10 min: cerrá con qué quedó firme y qué anotamos en preguntas pendientes para reforzar más adelante.
 
-Al final generame un patch con progreso.md actualizado: marcá este repaso como hecho en la
+Al final generame un patch en formato de parche de email de Git (header From/Date/Subject
+como en las demás sesiones, From: Ren-reno <reinaldo.codoceo@inacapmail.cl>) con
+progreso.md actualizado: marcá este repaso como hecho en la
 sección de mecanismos de refuerzo, y agregá a preguntas pendientes lo que haya quedado flojo.
 
 No hay ejercicio nuevo ni gancho de salida — es pura recuperación. Termina en 60 minutos reales, cronometrados.
@@ -136,7 +153,8 @@ Formato obligatorio (60 min):
 - 10 min: marcá como resueltas las que cerramos hoy, dejá el resto tal cual para la próxima limpieza.
   Si quedan más de 6-7 sin resolver, avisame — se están acumulando más rápido de lo que se cierran.
 
-Al final generame un patch con progreso.md actualizado: marcá esta limpieza como hecha, y
+Al final generame un patch en formato de parche de email de Git (header From/Date/Subject,
+From: Ren-reno <reinaldo.codoceo@inacapmail.cl>) con progreso.md actualizado: marcá esta limpieza como hecha, y
 actualizá la lista de preguntas pendientes (quitando las resueltas, dejando el resto).
 ```
 
@@ -162,7 +180,8 @@ Regla de corte:
   floja y planificamos 1-2 sesiones de refuerzo antes de tocar AWS. Esto no es un fracaso — es
   exactamente para esto que existe el chequeo: mejor encontrarlo acá que a mitad del Módulo 17.
 
-Al final generame un patch con progreso.md actualizado: marcá el chequeo como hecho con el
+Al final generame un patch en formato de parche de email de Git (header From/Date/Subject,
+From: Ren-reno <reinaldo.codoceo@inacapmail.cl>) con progreso.md actualizado: marcá el chequeo como hecho con el
 resultado (X/10), y si el corte dio negativo, agregá a preguntas pendientes qué fase reforzar.
 ```
 
