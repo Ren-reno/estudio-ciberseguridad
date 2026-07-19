@@ -7,12 +7,24 @@
 
 ## Cómo actualizar esto (30 segundos, al final de cada sesión)
 
-Agregá una línea a la tabla de abajo. El detalle largo va en `sesiones/sesion-N.N.md` — acá
-solo el resumen de una frase y el link.
+Agregá una línea a la tabla de abajo. Sesiones de teoría (ej. "1.3") van con su detalle en
+`sesiones/sesion-N.N.md`. Sub-sesiones de lab (ej. "Lab M1 - sub 2") van con su detalle en
+`labs/modulo-N/bitacora.md`, no acá.
 
-| Sesión | Fecha | Una frase de lo que quedó claro | Notas |
-|---|---|---|---|
-| — | — | — | — |
+| Sesión | Tipo | Fecha | Una frase de lo que quedó / se avanzó | Notas |
+|---|---|---|---|---|
+| — | — | — | — | — |
+
+---
+
+## Labs en curso (enunciado ya generado, sub-sesiones pendientes)
+
+Cuando arrancás el lab de un módulo, agregalo acá para saber en qué sub-sesión vas sin tener
+que abrir `labs/modulo-N/bitacora.md` cada vez.
+
+| Módulo | Sub-sesión actual | Total planeadas |
+|---|---|---|
+| — | — | — |
 
 ---
 

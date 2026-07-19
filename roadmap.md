@@ -2,7 +2,7 @@
 
 **Cómo usar este documento:** cada fila de las tablas es UNA sesión de estudio (45-60 min). No se hace un módulo entero por día — se hace una fila. Cada sesión tiene un gancho de entrada (conecta con la anterior) y un gancho de salida (conecta con la siguiente), para que el conocimiento se arme como cadena y no como bloques sueltos.
 
-**Los laboratorios avanzados de cada módulo NO se hacen sesión a sesión.** Se hacen al final del módulo, ya con todas las piezas teóricas conectadas, y se parten en 1-3 sesiones propias si son grandes.
+**Los laboratorios avanzados de cada módulo NO se hacen sesión a sesión junto con la teoría.** Se hacen al final del módulo, ya con todas las piezas teóricas conectadas: primero se genera un enunciado fijo con plan de sub-sesiones (una sola vez), y después se ejecuta cada sub-sesión de 1h por separado. Ver la sección "Cómo se trabajan los labs" más abajo.
 
 ---
 
@@ -42,7 +42,41 @@ breve en markdown para guardar en sesiones/sesion-[N.N].md.
 Esta sesión termina en 60 minutos reales, cronometrados.
 ```
 
-Para las sesiones de laboratorio grande, usás un prompt distinto (está al final de cada módulo). El entregable de esas sesiones va a `labs/modulo-N/`, no a `sesiones/`. El mismo principio aplica: conversación nueva, `progreso.md` como contexto.
+## Cómo se trabajan los labs (enunciado fijo + sub-sesiones de 1h)
+
+Los labs grandes de cada módulo (2-3 sesiones según el caso) se resuelven en dos pasos, no uno:
+
+**Paso 1 — Una sola vez, al terminar la última sesión de teoría del módulo:** pedís el enunciado del lab más un plan de cómo se parte en sub-sesiones de 1h. Esto se guarda en `labs/modulo-N/enunciado.md` y **no se vuelve a tocar** — es la consigna fija.
+
+```
+Terminé toda la teoría del Módulo [X]. Dame el enunciado completo del lab de este módulo
+(objetivo, entregable, criterio de éxito — igual de exigente que en el roadmap original,
+sin recortar alcance) y un plan de cómo dividirlo en sub-sesiones de 60 min.
+
+Para cada sub-sesión definí: qué parte puntual se resuelve hoy, y qué debe quedar
+"cerrado" al final de esa hora (aunque el lab completo siga abierto).
+
+No me des la solución de ninguna parte del lab, solo el enunciado y el plan de sub-sesiones.
+```
+
+**Paso 2 — Al empezar cada sub-sesión del lab:** le pasás el enunciado fijo + la bitácora de avance (`labs/modulo-N/bitacora.md`, que vos actualizás al final de cada sub-sesión con qué lograste y dónde quedaste). Vos resolvés — Claude no te da la solución, solo puede confirmar si tu enfoque va bien o corregir si te trabás en algo puntual.
+
+```
+Te paso el enunciado del lab de Módulo [X] y mi bitácora de avance.
+Hoy toca la sub-sesión [N] según el plan: [pegá qué corresponde a esa sub-sesión].
+
+Yo resuelvo esto solo. Tu rol hoy es: confirmarme si mi enfoque va bien cuando te lo
+cuente, o señalarme el error si me trabo — pero no me des la solución ni los pasos,
+dejame llegar yo. Si me trabo más de 10-15 min en el mismo punto, ahí sí dame una pista
+(no la respuesta completa).
+
+Al final decime qué anotar en la bitácora: qué quedó resuelto, dónde quedé, qué sigue
+en la próxima sub-sesión.
+
+Esta sub-sesión termina en 60 minutos reales, cronometrados.
+```
+
+Esto mantiene los labs con la misma profundidad que tienen en el roadmap original (nada se recorta), pero cada sub-sesión individual sí respeta el límite de 1h con un cierre concreto — nunca es "una hora libre a ver hasta dónde llego".
 
 **Antes de cualquier commit que incluya output de un lab (Fase 4-5 sobre todo):** revisá que no haya credenciales, IPs reales, ni nombres de host propios en lo que vas a subir. El `.gitignore` del repo ya excluye los formatos más obvios (`.pem`, `.tfstate`, capturas de tráfico), pero un output pegado a mano en un `.md` no lo filtra el `.gitignore` — eso lo revisás vos antes de commitear.
 
