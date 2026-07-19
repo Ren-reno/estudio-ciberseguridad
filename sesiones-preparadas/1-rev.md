@@ -5,6 +5,16 @@
 ---
 
 ```
+Mi repo de estudio está en: https://github.com/Ren-reno/estudio-ciberseguridad
+
+Si tenés herramientas para acceder a internet (bash con git, web fetch, un conector de
+GitHub, o similar), cloná o consultá ese repo vos mismo y leé roadmap.md y progreso.md
+directamente desde ahí — no hace falta que te los pegue.
+
+Si NO tenés forma de acceder a internet o repos, decime explícitamente "no puedo acceder
+al repo, pegame progreso.md y la sección relevante de roadmap.md" y esperá a que te los
+pase, en vez de inventar o asumir contenido que no tenés.
+
 Vamos a hacer la sesión de Repaso de Verificación 1.rev, Módulo 1 — TCP/IP a nivel de ingeniería.
 
 Tengo avance previo real en este módulo (ver progreso.md, sección "Avance previo"). El
@@ -22,7 +32,9 @@ todo automáticamente y seguimos. Si la respondo mal, seguimos con el formato no
 
 Al final generame un patch en formato de parche de email de Git (header From/Date/Subject,
 From: Ren-reno <reinaldo.codoceo@inacapmail.cl>) con progreso.md actualizado: resultado de
-este repaso, y si el módulo completo quedó firme, marcalo como completado.
+este repaso, y si el módulo completo quedó firme, marcalo como completado. Si no pudiste
+acceder al repo vos mismo, decime igual qué archivo/línea debería cambiar, en texto plano,
+para que yo lo aplique a mano.
 ```
 
 ---

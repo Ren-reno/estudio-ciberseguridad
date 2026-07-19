@@ -12,7 +12,7 @@
 
 **Flujo de cada sesión:**
 1. Abrí una conversación nueva.
-2. Pegá tu `progreso.md` actual (o simplemente decí "voy en la sesión X.X" si ya compartiste el roadmap antes en esa conversación).
+2. No hace falta pegar nada de entrada — el prompt de abajo ya incluye la URL del repo, y le pide al LLM que la consulte solo si tiene herramientas para hacerlo (si no, te va a pedir que le pegues progreso.md).
 3. Usá el prompt de abajo.
 4. Al terminar, Claude te entrega un archivo `.patch` con formato de parche de email de Git (header `From:`/`Date:`/`Subject:` + el diff), listo para `git am`. Trae el nuevo `sesiones/sesion-N.N.md` ya escrito y la línea de `progreso.md` ya actualizada — no hace falta que copies ni edites nada a mano.
 5. Aplicalo con 1 solo comando (aplica el diff Y crea el commit atribuido a vos en el mismo paso):
@@ -34,7 +34,17 @@ Un commit por sesión, ya atribuido a vos, te da un historial real y verificable
 ### Prompt de inicio de sesión
 
 ```
-Te paso mi progreso.md. Mirá la fila "Próxima sesión a hacer" para saber en qué sesión voy,
+Mi repo de estudio está en: https://github.com/Ren-reno/estudio-ciberseguridad
+
+Si tenés herramientas para acceder a internet (bash con git, web fetch, un conector de
+GitHub, o similar), cloná o consultá ese repo vos mismo y leé roadmap.md y progreso.md
+directamente desde ahí — no hace falta que te los pegue.
+
+Si NO tenés forma de acceder a internet o repos, decime explícitamente "no puedo acceder
+al repo, pegame progreso.md y la sección relevante de roadmap.md" y esperá a que te los
+pase, en vez de inventar o asumir contenido que no tenés.
+
+Mirá la fila "Próxima sesión a hacer" de progreso.md para saber en qué sesión voy,
 y el roadmap para ver el contenido exacto de esa fila (columna "Contenido de la sesión").
 
 Vamos a hacer esa sesión. El contenido de HOY es únicamente lo que dice esa fila —
