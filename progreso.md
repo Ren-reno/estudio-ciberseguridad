@@ -1,7 +1,9 @@
 # Progreso — Roadmap Cloud Security
 
-**Última sesión completada:** —
-**Próxima sesión a hacer:** pendiente de Chequeo de Bases Módulos 1-4 (ver sección abajo)
+**Última sesión completada:** 1.rev — Repaso de Verificación Módulo 1 (TCP/IP) — 2026-07-21
+**Próxima sesión a hacer:** 2.rev — Módulo 2 (Subnetting/routing). Nota: Módulo 1 quedó
+flojo en este repaso (no completado) — falta reforzar con sesiones 1.1-1.3 del roadmap
+normal antes de darlo por firme (ver checklist abajo).
 
 ---
 
@@ -70,7 +72,16 @@ firme, no maquillar un hueco para avanzar más rápido en el papel.
 
 ### Checklist de las 4 sesiones
 
-- [ ] 1.rev — Módulo 1 (TCP/IP) — resultado: __
+- [x] 1.rev — Módulo 1 (TCP/IP) — resultado: flojo (2026-07-21), 0/3 conceptos firmes —
+  (1) session hijacking por predicción de ISN: identificó "suplantación" en general pero
+  sin la distinción off-path/on-path que es lo que vuelve grave el ataque; (2) mecanismo
+  de SYN flood: agotamiento de RAM identificado correctamente, pero mecanismo impreciso
+  (agota el backlog de conexiones semi-abiertas, no "capacidad de red"); (3) diferencia
+  FIN vs RST y por qué RST injection es la herramienta ofensiva preferida: sin cobertura
+  previa. No se marca Módulo 1 como completado. Pendiente reforzar con sesiones 1.1
+  (profundizar ataque off-path), 1.2 (session hijacking + anatomía completa de flags) y
+  1.3 (SYN flood, RST injection, idle scan) del roadmap normal antes de reintentar
+  verificación.
 - [ ] 2.rev — Módulo 2 (Subnetting/routing) — resultado: __
 - [ ] 3.rev — Módulo 3 (DNS/HTTP) — resultado: __
 - [ ] 4.rev — Módulo 4 (Linux) — resultado: __ (ya sabemos que acá hay hueco: SUID/passwd, cadenas iptables)
