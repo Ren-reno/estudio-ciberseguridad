@@ -1,10 +1,10 @@
 # Progreso — Roadmap Cloud Security
 
-**Última sesión completada:** 2.rev — Repaso de Verificación Módulo 2 (Subnetting/routing) — 2026-07-22
-**Próxima sesión a hacer:** 3.rev — Módulo 3 (DNS/HTTP). Nota: Módulo 1 y Módulo 2 quedaron
-flojos en sus repasos (no completados) — falta reforzar Módulo 1 con sesiones 1.1-1.3 y
-Módulo 2 con sesiones 2.2 y 2.5-2.6 del roadmap normal antes de darlos por firmes (ver
-checklist abajo).
+**Última sesión completada:** 3.rev — Repaso de Verificación Módulo 3 (DNS/HTTP) — 2026-07-22
+**Próxima sesión a hacer:** 4.rev — Módulo 4 (Linux). Nota: Módulos 1, 2 y 3 quedaron flojos
+en sus repasos (no completados) — falta reforzar Módulo 1 con sesiones 1.1-1.3, Módulo 2 con
+sesiones 2.2 y 2.5-2.6, y Módulo 3 con sesiones 3.2 y 3.5-3.6 del roadmap normal antes de
+darlos por firmes (ver checklist abajo).
 
 ---
 
@@ -96,7 +96,20 @@ firme, no maquillar un hueco para avanzar más rápido en el papel.
   Pendiente reforzar con sesiones 2.2 (tabla de routing y longest prefix match) y 2.5-2.6
   (ARP en profundidad, ARP spoofing y redirección de tráfico en el mismo segmento) del
   roadmap normal antes de reintentar verificación.
-- [ ] 3.rev — Módulo 3 (DNS/HTTP) — resultado: __
+- [x] 3.rev — Módulo 3 (DNS/HTTP) — resultado: flojo (2026-07-22), 1/3 conceptos firmes —
+  (1) por qué SPF solo (sin DMARC) casi nunca alcanza para bloquear un correo con el `From:`
+  visible falsificado: identificó que SPF influye en spam vs no-spam y que DMARC es "el
+  siguiente paso", pero sin el mecanismo preciso (SPF valida el envelope sender/Return-Path,
+  no el `From:` visible; sin DMARC no hay política publicada ni exigencia de alineación entre
+  ambos) — imprecisión de mecanismo; (2) subdomain takeover vía CNAME abandonado: correcto de
+  punta a punta — el atacante reclama en el proveedor externo el recurso al que apunta el
+  CNAME huérfano, y DNS no verifica que el destino siga siendo dueño del recurso; (3) qué
+  vulnerabilidad nueva introduce la multiplexación de HTTP/2 sobre una sola conexión TCP: sin
+  cobertura previa (HTTP/2 Rapid Reset — abuso de apertura/cancelación masiva de streams
+  dentro de una sola conexión, evadiendo los límites de rate-limiting basados en conexiones
+  que sí existían en HTTP/1.1). No se marca Módulo 3 como completado. Pendiente reforzar con
+  sesiones 3.2 (SPF/DMARC y alineación) y 3.5-3.6 (HTTP/2-HTTP/3, superficies de ataque y
+  cache poisoning en CDNs) del roadmap normal antes de reintentar verificación.
 - [ ] 4.rev — Módulo 4 (Linux) — resultado: __ (ya sabemos que acá hay hueco: SUID/passwd, cadenas iptables)
 
 ---
