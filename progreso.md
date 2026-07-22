@@ -1,9 +1,10 @@
 # Progreso — Roadmap Cloud Security
 
-**Última sesión completada:** 1.rev — Repaso de Verificación Módulo 1 (TCP/IP) — 2026-07-21
-**Próxima sesión a hacer:** 2.rev — Módulo 2 (Subnetting/routing). Nota: Módulo 1 quedó
-flojo en este repaso (no completado) — falta reforzar con sesiones 1.1-1.3 del roadmap
-normal antes de darlo por firme (ver checklist abajo).
+**Última sesión completada:** 2.rev — Repaso de Verificación Módulo 2 (Subnetting/routing) — 2026-07-22
+**Próxima sesión a hacer:** 3.rev — Módulo 3 (DNS/HTTP). Nota: Módulo 1 y Módulo 2 quedaron
+flojos en sus repasos (no completados) — falta reforzar Módulo 1 con sesiones 1.1-1.3 y
+Módulo 2 con sesiones 2.2 y 2.5-2.6 del roadmap normal antes de darlos por firmes (ver
+checklist abajo).
 
 ---
 
@@ -82,7 +83,19 @@ firme, no maquillar un hueco para avanzar más rápido en el papel.
   (profundizar ataque off-path), 1.2 (session hijacking + anatomía completa de flags) y
   1.3 (SYN flood, RST injection, idle scan) del roadmap normal antes de reintentar
   verificación.
-- [ ] 2.rev — Módulo 2 (Subnetting/routing) — resultado: __
+- [x] 2.rev — Módulo 2 (Subnetting/routing) — resultado: flojo (2026-07-22), 1/3 conceptos
+  firmes — (1) diseño VLSM para una red corporativa con requerimientos de hosts dispares
+  (192.168.10.0/24 → 4 subredes de distinto tamaño): correcto de punta a punta, sin dudas;
+  (2) longest prefix match en tabla de routing con rutas superpuestas: identificó el criterio
+  de "pertenencia a la red" pero no el desempate por prefijo más específico cuando varias
+  rutas matchean el mismo destino — mecanismo impreciso; (3) por qué ARP sin autenticación
+  permite a un atacante en el mismo segmento interceptar tráfico: identificó que el ataque usa
+  solicitudes ARP falsificadas y que la tabla se actualiza, pero sin el mecanismo preciso
+  (respuestas ARP aceptadas sin verificación / ARP gratuito) ni la consecuencia (cache
+  poisoning → MITM sin que las víctimas lo perciban). No se marca Módulo 2 como completado.
+  Pendiente reforzar con sesiones 2.2 (tabla de routing y longest prefix match) y 2.5-2.6
+  (ARP en profundidad, ARP spoofing y redirección de tráfico en el mismo segmento) del
+  roadmap normal antes de reintentar verificación.
 - [ ] 3.rev — Módulo 3 (DNS/HTTP) — resultado: __
 - [ ] 4.rev — Módulo 4 (Linux) — resultado: __ (ya sabemos que acá hay hueco: SUID/passwd, cadenas iptables)
 
