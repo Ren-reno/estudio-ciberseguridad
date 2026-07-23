@@ -4,8 +4,8 @@
 **Próxima sesión a hacer:** con esto se completa el bloque de 4 repasos de verificación
 (1.rev-4.rev). Ningún módulo quedó firme — los 4 requieren refuerzo puntual antes de seguir
 con el roadmap normal (Módulo 5 en adelante): Módulo 1 (sesiones 1.1-1.3), Módulo 2
-(sesiones 2.2, 2.5-2.6), Módulo 3 (sesiones 3.2, 3.5-3.6), Módulo 4 (sesiones 4.1, 4.3,
-4.5). Ver checklist abajo para el detalle de cada resultado.
+(sesiones 2.2, 2.5-2.6), Módulo 3 (sesiones 3.2, 3.5-3.6), Módulo 4 completo (sesiones
+4.1-4.6, por decisión del usuario dado el resultado 0/3 — ver detalle en checklist abajo).
 
 ---
 
@@ -119,9 +119,12 @@ firme, no maquillar un hueco para avanzar más rápido en el papel.
   mecanismo de persistencia (unit file con `ExecStart=`/`WantedBy=` + `systemctl enable`):
   sin cobertura previa; (3) crontab como mecanismo de persistencia recurrente, y por qué eso
   es distinto de systemd (que arranca una vez en el boot vs. re-ejecución en cada intervalo):
-  sin cobertura previa. No se marca Módulo 4 como completado. Pendiente reforzar con sesiones
-  4.1 (SUID/passwd, permisos especiales más allá de rwx), 4.3 (systemd y persistencia) y 4.5
-  (crontabs como vector de persistencia) del roadmap normal antes de reintentar verificación.
+  sin cobertura previa. No se marca Módulo 4 como completado. **Decisión (2026-07-22, tras
+  ver el resultado 0/3): en vez de refuerzo puntual, se cursa el Módulo 4 completo (sesiones
+  4.1 a 4.6 del roadmap normal), no solo los 3 puntos flojos detectados hoy** — el avance
+  previo de este módulo era el más genérico de los 4 (sin ángulo de seguridad específico) y
+  solo se testearon 3 de las 6 sesiones, dejando 4.2 (`/proc`/`/var/log`), 4.4 (capabilities)
+  y 4.6 (SSH hardening) sin verificar. Reintentar verificación al terminar las 6 sesiones.
 
   **Cierre del bloque de 4 repasos (1.rev-4.rev):** completado en su totalidad. Resultado
   consolidado — Módulo 1: 0/3 firmes, Módulo 2: 1/3, Módulo 3: 1/3, Módulo 4: 0/3. Ningún
