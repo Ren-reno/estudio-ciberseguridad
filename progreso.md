@@ -1,10 +1,11 @@
 # Progreso — Roadmap Cloud Security
 
-**Última sesión completada:** 3.rev — Repaso de Verificación Módulo 3 (DNS/HTTP) — 2026-07-22
-**Próxima sesión a hacer:** 4.rev — Módulo 4 (Linux). Nota: Módulos 1, 2 y 3 quedaron flojos
-en sus repasos (no completados) — falta reforzar Módulo 1 con sesiones 1.1-1.3, Módulo 2 con
-sesiones 2.2 y 2.5-2.6, y Módulo 3 con sesiones 3.2 y 3.5-3.6 del roadmap normal antes de
-darlos por firmes (ver checklist abajo).
+**Última sesión completada:** 4.rev — Repaso de Verificación Módulo 4 (Linux) — 2026-07-22
+**Próxima sesión a hacer:** con esto se completa el bloque de 4 repasos de verificación
+(1.rev-4.rev). Ningún módulo quedó firme — los 4 requieren refuerzo puntual antes de seguir
+con el roadmap normal (Módulo 5 en adelante): Módulo 1 (sesiones 1.1-1.3), Módulo 2
+(sesiones 2.2, 2.5-2.6), Módulo 3 (sesiones 3.2, 3.5-3.6), Módulo 4 (sesiones 4.1, 4.3,
+4.5). Ver checklist abajo para el detalle de cada resultado.
 
 ---
 
@@ -110,7 +111,24 @@ firme, no maquillar un hueco para avanzar más rápido en el papel.
   que sí existían en HTTP/1.1). No se marca Módulo 3 como completado. Pendiente reforzar con
   sesiones 3.2 (SPF/DMARC y alineación) y 3.5-3.6 (HTTP/2-HTTP/3, superficies de ataque y
   cache poisoning en CDNs) del roadmap normal antes de reintentar verificación.
-- [ ] 4.rev — Módulo 4 (Linux) — resultado: __ (ya sabemos que acá hay hueco: SUID/passwd, cadenas iptables)
+- [x] 4.rev — Módulo 4 (Linux) — resultado: flojo (2026-07-22), 0/3 conceptos firmes —
+  (1) bit SUID y por qué es vector de escalación de privilegios: identificó el efecto general
+  ("da permisos de root") pero de forma circular, sin el mecanismo (el `exec()` fija el EUID
+  del proceso al dueño del archivo, independiente del UID real de quien lo invocó — cualquier
+  falla del binario se hereda con ese EUID) — imprecisión de mecanismo; (2) systemd como
+  mecanismo de persistencia (unit file con `ExecStart=`/`WantedBy=` + `systemctl enable`):
+  sin cobertura previa; (3) crontab como mecanismo de persistencia recurrente, y por qué eso
+  es distinto de systemd (que arranca una vez en el boot vs. re-ejecución en cada intervalo):
+  sin cobertura previa. No se marca Módulo 4 como completado. Pendiente reforzar con sesiones
+  4.1 (SUID/passwd, permisos especiales más allá de rwx), 4.3 (systemd y persistencia) y 4.5
+  (crontabs como vector de persistencia) del roadmap normal antes de reintentar verificación.
+
+  **Cierre del bloque de 4 repasos (1.rev-4.rev):** completado en su totalidad. Resultado
+  consolidado — Módulo 1: 0/3 firmes, Módulo 2: 1/3, Módulo 3: 1/3, Módulo 4: 0/3. Ningún
+  módulo se marca como completado. El resultado confirma el 4.5/10 del Chequeo de Bases
+  cruzado (C.1) — no fue una muestra pesimista, fue representativa del estado real. Antes de
+  continuar con el roadmap normal (Módulo 5 en adelante) corresponde reforzar los huecos
+  puntuales listados en cada ítem de este checklist, módulo por módulo.
 
 ---
 
