@@ -46,6 +46,9 @@ pase, en vez de inventar o asumir contenido que no tenés.
 
 Mirá la fila "Próxima sesión a hacer" de progreso.md para saber en qué sesión voy,
 y el roadmap para ver el contenido exacto de esa fila (columna "Contenido de la sesión").
+Si en algún momento hace falta contexto de cómo esa sesión conecta con el resto del
+programa, ideas-centrales.md tiene el mapa completo — no hace falta leerlo entero cada vez,
+solo si se necesita esa vista más amplia.
 
 Si progreso.md tiene, para el módulo de hoy, un diagnóstico concepto por concepto de una
 sesión de verificación previa, leelo y usalo para calibrar: lo marcado como "sin cobertura
@@ -58,6 +61,13 @@ vez que uses un término nuevo, definilo en una frase simple antes de construir 
 él. Subí la dificultad de a poco dentro de la sesión, no de entrada. Si notás que vas a
 meter más de 2-3 conceptos nuevos seguidos, parate y preguntame si hace falta desglosarlo
 más.
+
+Cada módulo tiene, debajo de su tabla, un bloque "Detalle por sesión" con objetivo,
+prerrequisitos y conceptos nuevos ya definidos. Antes de generar el contenido, revisá el
+campo "Prerrequisitos" de la fila de hoy: si dice algo genérico tipo "se apoya en X.Y" y
+progreso.md ya tiene información más específica de qué quedó firme o flojo en esas sesiones
+previas, actualizalo con eso antes de armar la clase, e incluí ese ajuste en el patch de hoy
+junto con el resto.
 
 Vamos a hacer esa sesión. El contenido de HOY es únicamente lo que dice esa fila —
 no el módulo completo, no lo que sigue después.
@@ -312,6 +322,15 @@ este repaso, y si el módulo completo quedó firme, marcalo como completado.
 | 2.5 | ARP en profundidad: sin autenticación, y por qué eso es catastrófico en redes planas | ¿Qué puede hacer un atacante en tu mismo segmento /24? |
 | 2.6 | Cómo un atacante en tu segmento puede redireccionar tráfico sin que lo notes | Ya tenés la arquitectura completa — ahora se implementa |
 
+**Detalle por sesión (objetivo, prerrequisitos, conceptos nuevos):**
+
+- **2.1** — *Objetivo:* Explicar por qué CIDR reemplazó al direccionamiento classful y qué implica para cómo se segmenta una red. *Prerrequisitos:* Modelo TCP/IP (Módulo 1); primera sesión del módulo. *Conceptos nuevos:* CIDR, direccionamiento classful, máscara de subred.
+- **2.2** — *Objetivo:* Explicar cómo arma un router su tabla de routing y por qué gana la ruta más específica (longest prefix match). *Prerrequisitos:* CIDR (2.1). *Conceptos nuevos:* tabla de routing, longest prefix match.
+- **2.3** — *Objetivo:* Diseñar el subnetting VLSM de una red corporativa a partir de requisitos reales de hosts por segmento. *Prerrequisitos:* Tabla de routing (2.2). *Conceptos nuevos:* VLSM, subnetting corporativo.
+- **2.4** — *Objetivo:* Explicar por qué NAT no es un mecanismo de seguridad aunque lo parezca, y qué aísla realmente una VLAN. *Prerrequisitos:* Diseño de subredes (2.3). *Conceptos nuevos:* NAT, VLAN, segmentación lógica vs física.
+- **2.5** — *Objetivo:* Explicar por qué ARP no tiene autenticación y qué implica eso en una red plana. *Prerrequisitos:* NAT/VLAN (2.4). *Conceptos nuevos:* ARP, red plana, segmento /24.
+- **2.6** — *Objetivo:* Explicar cómo un atacante en el mismo segmento puede redirigir tráfico ajeno sin que se note. *Prerrequisitos:* ARP (2.5). *Conceptos nuevos:* ARP spoofing, redirección de tráfico en el mismo segmento.
+
 **Lab del módulo (2-3 sesiones aparte):** diseño de arquitectura de 3 zonas (DMZ, red interna, servidores críticos) con cálculo de bloques CIDR y réplica con iptables.
 
 ---
@@ -327,6 +346,15 @@ este repaso, y si el módulo completo quedó firme, marcalo como completado.
 | 3.5 | HTTP/2 y HTTP/3 (QUIC): multiplexación y las superficies de ataque que introduce | Hasta los CDNs modernos tienen su propia versión del cache poisoning |
 | 3.6 | Cache poisoning en CDNs (Cloudflare) vs DNS clásico | Ya tenés todo para reconstruir infraestructura ajena sin tocarla |
 
+**Detalle por sesión (objetivo, prerrequisitos, conceptos nuevos):**
+
+- **3.1** — *Objetivo:* Explicar la jerarquía DNS completa y qué pasa en cada salto, del root al authoritative server. *Prerrequisitos:* Primera sesión del módulo; se apoya en Módulos 1-2. *Conceptos nuevos:* jerarquía DNS, root server, authoritative server.
+- **3.2** — *Objetivo:* Explicar qué registros DNS tienen implicación de seguridad no obvia, como un SPF mal configurado. *Prerrequisitos:* Jerarquía DNS (3.1). *Conceptos nuevos:* SPF, TXT records, email spoofing.
+- **3.3** — *Objetivo:* Explicar cómo un CNAME abandonado permite un subdomain takeover. *Prerrequisitos:* Registros DNS (3.2). *Conceptos nuevos:* CNAME, subdomain takeover.
+- **3.4** — *Objetivo:* Explicar cómo DNSSEC previene el cache poisoning y por qué su adopción sigue siendo baja. *Prerrequisitos:* Subdomain takeover (3.3). *Conceptos nuevos:* DNSSEC, cache poisoning.
+- **3.5** — *Objetivo:* Explicar la multiplexación de HTTP/2 y HTTP/3 (QUIC) y las superficies de ataque que introduce. *Prerrequisitos:* DNS (3.1-3.4). *Conceptos nuevos:* HTTP/2, HTTP/3, QUIC, multiplexación.
+- **3.6** — *Objetivo:* Explicar cómo un CDN moderno puede sufrir su propia versión de cache poisoning. *Prerrequisitos:* HTTP/2-3 (3.5). *Conceptos nuevos:* cache poisoning en CDN.
+
 **Lab del módulo (1-2 sesiones aparte):** OSINT completo sobre un dominio usando solo dig, dnsx, subfinder — reconstruir infraestructura sin visitar el sitio.
 
 ---
@@ -341,6 +369,15 @@ este repaso, y si el módulo completo quedó firme, marcalo como completado.
 | 4.4 | Modelo de capabilities (`CAP_NET_RAW`, `CAP_SYS_ADMIN`) como alternativa a setuid | Hay un vector de persistencia clásico y muy simple |
 | 4.5 | Crontabs como vector de persistencia | El acceso remoto es la puerta más común — hay que blindarla |
 | 4.6 | SSH hardening: `sshd_config`, clave pública vs contraseña, por qué fail2ban solo no alcanza | Ya tenés todo para auditar un sistema real |
+
+**Detalle por sesión (objetivo, prerrequisitos, conceptos nuevos):**
+
+- **4.1** — *Objetivo:* Explicar dónde vive cada pieza de información sensible en el filesystem de Linux (/etc/shadow, /etc/sudoers) desde la perspectiva de un atacante post-explotación. *Prerrequisitos:* Primera sesión del módulo. *Conceptos nuevos:* /etc/shadow, /etc/sudoers, hash de contraseña, permisos world-readable.
+- **4.2** — *Objetivo:* Explicar qué información crítica se puede extraer de /proc y /var/log. *Prerrequisitos:* Filesystem hierarchy (4.1). *Conceptos nuevos:* /proc, /var/log.
+- **4.3** — *Objetivo:* Explicar cómo systemd se usa como mecanismo de persistencia de malware. *Prerrequisitos:* /proc y /var/log (4.2). *Conceptos nuevos:* systemd, persistencia.
+- **4.4** — *Objetivo:* Explicar el modelo de capabilities de Linux como alternativa más granular a setuid. *Prerrequisitos:* systemd (4.3). *Conceptos nuevos:* capabilities, CAP_NET_RAW, CAP_SYS_ADMIN, setuid.
+- **4.5** — *Objetivo:* Explicar cómo un crontab se usa como vector de persistencia. *Prerrequisitos:* Capabilities (4.4). *Conceptos nuevos:* crontab, persistencia.
+- **4.6** — *Objetivo:* Explicar cómo endurecer SSH (sshd_config, clave pública vs contraseña) y por qué fail2ban solo no alcanza. *Prerrequisitos:* Crontab (4.5). *Conceptos nuevos:* sshd_config, autenticación por clave pública, fail2ban.
 
 **Lab del módulo (2-3 sesiones aparte):** auditoría completa de una VM mal configurada — identificar 8+ misconfiguraciones, documentar vector de explotación de cada una, script Bash idempotente que corrija todo.
 
@@ -360,6 +397,15 @@ este repaso, y si el módulo completo quedó firme, marcalo como completado.
 | 5.5 | Certificados X.509: estructura, CA chain of trust, Certificate Transparency logs | Hay ataques que no rompen el cifrado, rompen la versión |
 | 5.6 | Ataques de downgrade (POODLE, BEAST, LOGJAM) y su mitigación | Ya tenés la teoría — ahora se configura un servidor real, mal y bien |
 
+**Detalle por sesión (objetivo, prerrequisitos, conceptos nuevos):**
+
+- **5.1** — *Objetivo:* Explicar en términos reales qué es una colisión criptográfica y por qué eso rompe a MD5 y SHA-1. *Prerrequisitos:* Primera sesión del módulo. *Conceptos nuevos:* colisión criptográfica, MD5, SHA-1.
+- **5.2** — *Objetivo:* Explicar por qué TLS combina cifrado simétrico (AES-256) y asimétrico (RSA/ECDSA) en vez de usar solo uno. *Prerrequisitos:* Colisiones (5.1). *Conceptos nuevos:* cifrado simétrico, cifrado asimétrico, AES-256, RSA/ECDSA.
+- **5.3** — *Objetivo:* Explicar el problema del intercambio de claves y cómo Diffie-Hellman lo resuelve. *Prerrequisitos:* Simétrica vs asimétrica (5.2). *Conceptos nuevos:* intercambio de claves, Diffie-Hellman.
+- **5.4** — *Objetivo:* Explicar qué es Perfect Forward Secrecy y por qué inutiliza tráfico cifrado archivado. *Prerrequisitos:* Diffie-Hellman (5.3). *Conceptos nuevos:* Perfect Forward Secrecy.
+- **5.5** — *Objetivo:* Explicar la estructura de un certificado X.509 y la cadena de confianza de una CA. *Prerrequisitos:* PFS (5.4). *Conceptos nuevos:* X.509, CA chain of trust, Certificate Transparency.
+- **5.6** — *Objetivo:* Explicar cómo funcionan los ataques de downgrade (POODLE, BEAST, LOGJAM) y cómo se mitigan. *Prerrequisitos:* Certificados X.509 (5.5). *Conceptos nuevos:* ataque de downgrade, POODLE, BEAST, LOGJAM.
+
 **Lab del módulo (1-2 sesiones aparte):** Nginx con TLS inseguro → auditoría con testssl.sh/sslyze con CVEs → configuración correcta → demostración con Wireshark de que el downgrade ya no funciona.
 
 ---
@@ -373,6 +419,14 @@ este repaso, y si el módulo completo quedó firme, marcalo como completado.
 | 6.3 | SSRF: cómo llegar al endpoint de metadatos de EC2 (169.254.169.254) y robar credenciales IAM completas | Deserializar datos ajenos puede ser tan peligroso como ejecutar su código |
 | 6.4 | Insecure Deserialization como RCE casi garantizado | Una sola categoría explica el 80% de los compromisos reales |
 | 6.5 | Security Misconfiguration: por qué es la causa raíz más común | Ya tenés la teoría de 5 vectores — ahora se explotan de verdad |
+
+**Detalle por sesión (objetivo, prerrequisitos, conceptos nuevos):**
+
+- **6.1** — *Objetivo:* Explicar por qué las inyecciones (SQLi, Command Injection, XSS) siguen siendo el vector más prevalente. *Prerrequisitos:* Primera sesión del módulo; se apoya en criptografía/TLS de Módulo 5 como contexto de qué protege una app bien configurada. *Conceptos nuevos:* SQLi, Command Injection, XSS, confusión datos/código.
+- **6.2** — *Objetivo:* Explicar por qué el control de acceso roto (Broken Access Control) es hoy la vulnerabilidad #1 del OWASP Top 10. *Prerrequisitos:* Inyecciones (6.1). *Conceptos nuevos:* Broken Access Control.
+- **6.3** — *Objetivo:* Explicar cómo un SSRF permite llegar al endpoint de metadatos de EC2 y robar credenciales IAM. *Prerrequisitos:* Control de acceso (6.2). *Conceptos nuevos:* SSRF, endpoint de metadatos EC2 (169.254.169.254).
+- **6.4** — *Objetivo:* Explicar por qué deserializar datos ajenos puede ser tan peligroso como ejecutar su código (RCE). *Prerrequisitos:* SSRF (6.3). *Conceptos nuevos:* Insecure Deserialization, RCE.
+- **6.5** — *Objetivo:* Explicar por qué Security Misconfiguration es la causa raíz más común de brechas reales. *Prerrequisitos:* Deserialización insegura (6.4). *Conceptos nuevos:* Security Misconfiguration.
 
 **Lab del módulo (2 sesiones aparte):** DVWA o WebGoat en Docker, pentest de caja negra, explotar 5+ vulnerabilidades del Top 10, documentar payload + causa raíz + mitigación en código + impacto de negocio en informe ejecutivo.
 
@@ -388,6 +442,14 @@ este repaso, y si el módulo completo quedó firme, marcalo como completado.
 | 7.4 | Indicadores de compromiso: SUID inesperados, crontabs ocultos, fileless malware, conexiones no reconocidas | Se puede auditar cada llamada al sistema, literalmente |
 | 7.5 | `auditd` como sistema de monitoreo de syscalls | Ya tenés todo para reconstruir un ataque desde cero, sin saber qué pasó |
 
+**Detalle por sesión (objetivo, prerrequisitos, conceptos nuevos):**
+
+- **7.1** — *Objetivo:* Explicar el principio de defensa en profundidad: por qué cada capa debe fallar de forma independiente. *Prerrequisitos:* Se apoya en Módulo 4 (Linux) y Módulo 6 (vulnerabilidades de aplicación). *Conceptos nuevos:* defensa en profundidad.
+- **7.2** — *Objetivo:* Explicar la diferencia entre AppArmor y SELinux como Mandatory Access Control. *Prerrequisitos:* Defensa en profundidad (7.1). *Conceptos nuevos:* AppArmor, SELinux, Mandatory Access Control.
+- **7.3** — *Objetivo:* Explicar qué buscar en un análisis forense de logs (auth.log, syslog, journald). *Prerrequisitos:* MAC (7.2). *Conceptos nuevos:* auth.log, syslog, journald, análisis forense de logs.
+- **7.4** — *Objetivo:* Reconocer los indicadores de compromiso más comunes: SUID inesperados, crontabs ocultos, fileless malware. *Prerrequisitos:* Análisis forense de logs (7.3). *Conceptos nuevos:* indicador de compromiso (IOC), fileless malware.
+- **7.5** — *Objetivo:* Explicar cómo auditd monitorea syscalls a nivel de sistema. *Prerrequisitos:* IOCs (7.4). *Conceptos nuevos:* auditd, syscall.
+
 **Lab del módulo (2-3 sesiones aparte):** VM comprometida hace 72h, sin contexto previo — reconstruir línea temporal completa del ataque solo con logs y análisis forense. Informe con evidencia numerada.
 
 ---
@@ -401,6 +463,14 @@ este repaso, y si el módulo completo quedó firme, marcalo como completado.
 | 8.3 | iptables/nftables: cadenas INPUT/OUTPUT/FORWARD y por qué el orden importa | Hay dos formas de detectar intrusos, y los atacantes conocen una de ellas |
 | 8.4 | Snort/Suricata: firmas vs anomalías, y por qué los atacantes estudian las firmas públicas | Wireshark entre miles de paquetes necesita filtros quirúrgicos |
 | 8.5 | Wireshark en modo forense: filtros de display avanzados para aislar comportamiento malicioso | Ya tenés todo para cazar un ataque real en una captura |
+
+**Detalle por sesión (objetivo, prerrequisitos, conceptos nuevos):**
+
+- **8.1** — *Objetivo:* Explicar la diferencia arquitectural entre packet filter, stateful inspection y NGFW. *Prerrequisitos:* Primera sesión del módulo; se apoya en TCP/UDP stateful/stateless de Módulo 1. *Conceptos nuevos:* packet filter, stateful inspection, NGFW.
+- **8.2** — *Objetivo:* Explicar por qué un firewall perimetral no protege contra movimiento lateral dentro de una red plana. *Prerrequisitos:* Tipos de firewall (8.1). *Conceptos nuevos:* perímetro, movimiento lateral.
+- **8.3** — *Objetivo:* Explicar las cadenas INPUT/OUTPUT/FORWARD de iptables/nftables y por qué el orden de las reglas importa. *Prerrequisitos:* Movimiento lateral (8.2). *Conceptos nuevos:* iptables, nftables, cadenas INPUT/OUTPUT/FORWARD.
+- **8.4** — *Objetivo:* Explicar la diferencia entre detección por firmas y por anomalías en Snort/Suricata. *Prerrequisitos:* iptables/nftables (8.3). *Conceptos nuevos:* Snort, Suricata, detección por firmas vs anomalías.
+- **8.5** — *Objetivo:* Usar filtros de display avanzados en Wireshark para aislar comportamiento malicioso en una captura grande. *Prerrequisitos:* Snort/Suricata (8.4). *Conceptos nuevos:* Wireshark modo forense, filtros de display avanzados.
 
 **Lab del módulo (2 sesiones aparte):** analizar un PCAP con ataque real, escribir firma Snort/Suricata que lo detecte, implementar regla iptables que lo hubiera bloqueado.
 
@@ -421,6 +491,15 @@ este repaso, y si el módulo completo quedó firme, marcalo como completado.
 | 9.5 | Mass assignment: los peligros del binding automático de parámetros | GraphQL tiene una función que es un mapa completo del sistema, gratis |
 | 9.6 | GraphQL introspection como herramienta de reconnaissance | Ya tenés la teoría — ahora auditás una API real |
 
+**Detalle por sesión (objetivo, prerrequisitos, conceptos nuevos):**
+
+- **9.1** — *Objetivo:* Explicar cómo cookies, tokens y sesiones construyen estado sobre un protocolo stateless como HTTP. *Prerrequisitos:* HTTP/2-3 (Módulo 3); primera sesión del módulo. *Conceptos nuevos:* HTTP stateless, cookies, tokens, sesión.
+- **9.2** — *Objetivo:* Explicar el flujo completo de OAuth 2.0 y OpenID Connect. *Prerrequisitos:* Estado sobre HTTP (9.1). *Conceptos nuevos:* OAuth 2.0, OpenID Connect.
+- **9.3** — *Objetivo:* Explicar los ataques específicos a cada paso del flujo OAuth: open redirect, CSRF en authorization endpoint, token leakage. *Prerrequisitos:* OAuth/OIDC (9.2). *Conceptos nuevos:* open redirect, CSRF, token leakage vía Referer.
+- **9.4** — *Objetivo:* Explicar el OWASP API Security Top 10, con foco en BOLA/IDOR como el más prevalente. *Prerrequisitos:* Ataques a OAuth (9.3). *Conceptos nuevos:* OWASP API Security Top 10, BOLA, IDOR.
+- **9.5** — *Objetivo:* Explicar los peligros del mass assignment por binding automático de parámetros. *Prerrequisitos:* BOLA/IDOR (9.4). *Conceptos nuevos:* mass assignment, binding automático.
+- **9.6** — *Objetivo:* Explicar cómo GraphQL introspection funciona como herramienta de reconnaissance. *Prerrequisitos:* Mass assignment (9.5). *Conceptos nuevos:* GraphQL introspection.
+
 **Lab del módulo (2 sesiones aparte):** OWASP crAPI/dvAPI en Docker, rol de security reviewer de API bancaria — encontrar IDOR + broken authentication + mass assignment, con PoC, impacto y corrección en pseudocódigo para cada uno.
 
 ---
@@ -436,6 +515,15 @@ este repaso, y si el módulo completo quedó firme, marcalo como completado.
 | 10.5 | Session fixation, session riding (CSRF), impacto de cookies sin HttpOnly/Secure/SameSite | Un código de 6 dígitos por SMS es más débil de lo que parece |
 | 10.6 | MFA: por qué TOTP > SMS OTP, y cómo se ataca vía SIM swapping / SS7 + intro a FIDO2/WebAuthn | Ya tenés todo para atacar y defender JWT en un entorno real |
 
+**Detalle por sesión (objetivo, prerrequisitos, conceptos nuevos):**
+
+- **10.1** — *Objetivo:* Explicar por qué las contraseñas están fundamentalmente rotas y cómo bcrypt/Argon2 mitigan fuerza bruta offline. *Prerrequisitos:* Primera sesión del módulo; se apoya en hashing de Módulo 5. *Conceptos nuevos:* bcrypt, Argon2, fuerza bruta offline.
+- **10.2** — *Objetivo:* Explicar la estructura completa de un JWT (header.payload.signature). *Prerrequisitos:* Hashing de contraseñas (10.1). *Conceptos nuevos:* JWT, header.payload.signature.
+- **10.3** — *Objetivo:* Explicar el ataque alg:none y la confusión RS256/HS256 en JWT. *Prerrequisitos:* Estructura JWT (10.2). *Conceptos nuevos:* alg:none, confusión RS256/HS256.
+- **10.4** — *Objetivo:* Explicar la diferencia entre usar JWT para autenticación vs para autorización. *Prerrequisitos:* Ataques a JWT (10.3). *Conceptos nuevos:* autenticación vs autorización.
+- **10.5** — *Objetivo:* Explicar session fixation, session riding (CSRF) y el impacto de cookies sin HttpOnly/Secure/SameSite. *Prerrequisitos:* Auth vs authz (10.4). *Conceptos nuevos:* session fixation, session riding, HttpOnly/Secure/SameSite.
+- **10.6** — *Objetivo:* Explicar por qué TOTP es más seguro que SMS OTP, y cómo se ataca vía SIM swapping/SS7. *Prerrequisitos:* Session fixation/riding (10.5). *Conceptos nuevos:* MFA, TOTP, SIM swapping, SS7, FIDO2/WebAuthn.
+
 **Lab del módulo (1-2 sesiones aparte):** Burp Suite Community — decodificar JWT, intentar `alg:none`, falsificar rol admin modificando payload, documentar qué funcionó y por qué, luego configurar validación correcta en servidor.
 
 ---
@@ -449,6 +537,14 @@ este repaso, y si el módulo completo quedó firme, marcalo como completado.
 | 11.3 | Requests para interacción con APIs y automatización de fuzzing | Los logs esconden IOCs si sabés qué patrón buscar |
 | 11.4 | Parsing de logs con regex y extracción de IOCs | El hardening también se puede automatizar, no solo el ataque |
 | 11.5 | Subprocess y os para automatización de hardening | Ya tenés todas las piezas — ahora se arma una herramienta completa |
+
+**Detalle por sesión (objetivo, prerrequisitos, conceptos nuevos):**
+
+- **11.1** — *Objetivo:* Explicar por qué Python domina en seguridad (librerías de red de bajo nivel, scripting rápido). *Prerrequisitos:* Primera sesión del módulo. *Conceptos nuevos:* Python en seguridad.
+- **11.2** — *Objetivo:* Construir paquetes de red arbitrarios con Scapy. *Prerrequisitos:* Por qué Python (11.1). *Conceptos nuevos:* Scapy, construcción de paquetes.
+- **11.3** — *Objetivo:* Automatizar interacción con APIs y fuzzing usando Requests. *Prerrequisitos:* Scapy (11.2). *Conceptos nuevos:* Requests, fuzzing de APIs.
+- **11.4** — *Objetivo:* Extraer IOCs de logs con regex. *Prerrequisitos:* Requests/fuzzing (11.3). *Conceptos nuevos:* regex, extracción de IOCs de logs.
+- **11.5** — *Objetivo:* Automatizar tareas de hardening con subprocess y os. *Prerrequisitos:* Parsing de logs (11.4). *Conceptos nuevos:* subprocess, os, automatización de hardening.
 
 **Lab del módulo (2 sesiones aparte):** herramienta de auditoría desde cero — DNS + enumeración de subdominios, port scan con banner grabbing, verificación de headers de seguridad HTTP, reporte JSON clasificado por severidad. Código modular y documentado.
 
@@ -468,6 +564,14 @@ este repaso, y si el módulo completo quedó firme, marcalo como completado.
 | 12.4 | Docker socket (`/var/run/docker.sock`) como vector de escalación de privilegios | `--privileged` no es un flag inocente |
 | 12.5 | Container escape: `--privileged`, host mounts peligrosos, capabilities no restringidas | Ya tenés todo para escanear y endurecer imágenes reales |
 
+**Detalle por sesión (objetivo, prerrequisitos, conceptos nuevos):**
+
+- **12.1** — *Objetivo:* Explicar por qué un contenedor no es una VM: el kernel compartido y qué implica en el modelo de amenazas. *Prerrequisitos:* Primera sesión del módulo; se apoya en Linux (Módulo 4/7). *Conceptos nuevos:* kernel compartido, modelo de amenazas de contenedores.
+- **12.2** — *Objetivo:* Explicar namespaces y cgroups como mecanismo de aislamiento, y sus límites. *Prerrequisitos:* Kernel compartido (12.1). *Conceptos nuevos:* namespaces, cgroups.
+- **12.3** — *Objetivo:* Analizar una imagen de contenedor para detectar secretos embebidos (credenciales, claves privadas). *Prerrequisitos:* Namespaces/cgroups (12.2). *Conceptos nuevos:* secretos embebidos, hardcoded credentials.
+- **12.4** — *Objetivo:* Explicar por qué el Docker socket (/var/run/docker.sock) es un vector de escalación de privilegios. *Prerrequisitos:* Secretos embebidos (12.3). *Conceptos nuevos:* Docker socket.
+- **12.5** — *Objetivo:* Explicar cómo --privileged, host mounts peligrosos y capabilities no restringidas permiten un container escape. *Prerrequisitos:* Docker socket (12.4). *Conceptos nuevos:* container escape, --privileged, host mounts.
+
 **Lab del módulo (1-2 sesiones aparte):** 3 imágenes vulnerables — escanear con Trivy (CVEs críticas), buscar secretos con `dive`, construir versión hardened con mínimo privilegio, demostrar que un escape que antes funcionaba ya no funciona.
 
 ---
@@ -481,6 +585,14 @@ este repaso, y si el módulo completo quedó firme, marcalo como completado.
 | 13.3 | Git history como vector de filtración de secretos | Los repos públicos filtran credenciales de nube todo el tiempo, sin que nadie lo note al toque |
 | 13.4 | Secret scanning: por qué tokens de GitHub, AWS keys y certificates aparecen constantemente en repos públicos | El análisis estático puede atrapar la vulnerabilidad antes de que exista en producción |
 | 13.5 | SAST integrado en pipelines + signing de commits con GPG | Ya tenés todo para armar un pipeline seguro de punta a punta |
+
+**Detalle por sesión (objetivo, prerrequisitos, conceptos nuevos):**
+
+- **13.1** — *Objetivo:* Explicar por qué el pipeline CI/CD es una superficie de ataque de alto valor: compromiso de pipeline = compromiso de producción. *Prerrequisitos:* Primera sesión del módulo; se apoya en Docker (Módulo 12). *Conceptos nuevos:* pipeline CI/CD como superficie de ataque.
+- **13.2** — *Objetivo:* Explicar un supply chain attack (caso SolarWinds) aplicado a GitHub Actions. *Prerrequisitos:* Pipeline como superficie de ataque (13.1). *Conceptos nuevos:* supply chain attack, SolarWinds.
+- **13.3** — *Objetivo:* Explicar por qué git rm no borra secretos del historial real del repositorio. *Prerrequisitos:* Supply chain attacks (13.2). *Conceptos nuevos:* Git history como vector de filtración.
+- **13.4** — *Objetivo:* Explicar por qué tokens de GitHub, AWS keys y certificates aparecen constantemente filtrados en repos públicos. *Prerrequisitos:* Git history (13.3). *Conceptos nuevos:* secret scanning.
+- **13.5** — *Objetivo:* Integrar SAST en un pipeline y firmar commits con GPG. *Prerrequisitos:* Secret scanning (13.4). *Conceptos nuevos:* SAST, signing de commits, GPG.
 
 **Lab del módulo (2 sesiones aparte):** pipeline GitHub Actions completo — secret scanning (truffleHog/git-secrets), SAST con Semgrep, Dependabot, build+push de imagen Docker. Más: repo con 5 vulnerabilidades intencionales en el pipeline para identificar y corregir.
 
@@ -496,6 +608,14 @@ este repaso, y si el módulo completo quedó firme, marcalo como completado.
 | 14.4 | tfsec y Checkov para análisis estático de configuraciones IaC | El estado remoto también necesita su propio candado |
 | 14.5 | Remote state con S3 + DynamoDB para locking: el modelo correcto | Ya tenés todo para escribir infraestructura segura de punta a punta |
 
+**Detalle por sesión (objetivo, prerrequisitos, conceptos nuevos):**
+
+- **14.1** — *Objetivo:* Explicar por qué IaC es imprescindible para seguridad cloud: reproducibilidad, auditabilidad, detección de drift. *Prerrequisitos:* Primera sesión del módulo; se apoya en CI/CD (Módulo 13). *Conceptos nuevos:* IaC, reproducibilidad, drift.
+- **14.2** — *Objetivo:* Explicar por qué el Terraform state es un vector de ataque (puede filtrar secretos en texto plano). *Prerrequisitos:* Por qué IaC (14.1). *Conceptos nuevos:* Terraform state.
+- **14.3** — *Objetivo:* Reconocer las misconfiguraciones IaC más comunes: S3 buckets públicos, security groups 0.0.0.0/0, roles IAM con wildcard. *Prerrequisitos:* Terraform state (14.2). *Conceptos nuevos:* S3 público, security group 0.0.0.0/0, IAM wildcard.
+- **14.4** — *Objetivo:* Usar tfsec y Checkov para análisis estático de configuraciones IaC. *Prerrequisitos:* Misconfiguraciones comunes (14.3). *Conceptos nuevos:* tfsec, Checkov.
+- **14.5** — *Objetivo:* Explicar el modelo correcto de remote state con S3 + DynamoDB para locking. *Prerrequisitos:* tfsec/Checkov (14.4). *Conceptos nuevos:* remote state, DynamoDB locking.
+
 **Lab del módulo (2-3 sesiones aparte):** Terraform completo en AWS/LocalStack — VPC con subnets públicas/privadas, security groups segmentados, EC2 privado, ALB público, IAM de mínimo privilegio. Debe pasar tfsec sin críticos. Después: versión con misconfiguraciones para detectar a mano antes de correr tfsec.
 
 ---
@@ -508,6 +628,13 @@ este repaso, y si el módulo completo quedó firme, marcalo como completado.
 | 15.2 | Service accounts: por qué el token automático en cada pod es un vector de privilege escalation | Por defecto, todo pod puede hablar con todo pod |
 | 15.3 | Network policies: por qué el default viola el mínimo privilegio | Un contenedor puede tener flags que lo dejan escapar del aislamiento |
 | 15.4 | Security contexts: runAsNonRoot, readOnlyRootFilesystem, allowPrivilegeEscalation | Ya tenés todo para explotar y luego blindar un cluster real |
+
+**Detalle por sesión (objetivo, prerrequisitos, conceptos nuevos):**
+
+- **15.1** — *Objetivo:* Explicar la arquitectura de Kubernetes desde la perspectiva del atacante: API server, RBAC, etcd. *Prerrequisitos:* Primera sesión del módulo; se apoya en Docker (Módulo 12). *Conceptos nuevos:* API server, RBAC, etcd.
+- **15.2** — *Objetivo:* Explicar por qué el token automático montado en cada pod es un vector de privilege escalation. *Prerrequisitos:* Arquitectura K8s (15.1). *Conceptos nuevos:* service account, token automático de pod.
+- **15.3** — *Objetivo:* Explicar por qué el default de las network policies viola el mínimo privilegio. *Prerrequisitos:* Service accounts (15.2). *Conceptos nuevos:* network policy, mínimo privilegio.
+- **15.4** — *Objetivo:* Explicar cómo runAsNonRoot, readOnlyRootFilesystem y allowPrivilegeEscalation configuran un security context seguro. *Prerrequisitos:* Network policies (15.3). *Conceptos nuevos:* security context, runAsNonRoot, readOnlyRootFilesystem.
 
 **Lab del módulo (2-3 sesiones aparte):** cluster local (kind/minikube) con RCE en una app desplegada — desde el container comprometido, explorar hasta dónde se puede llegar (token de service account, API de K8s, otros namespaces). Después: aplicar RBAC + network policies + securityContext y repetir demostrando que cada vector está bloqueado.
 
@@ -526,6 +653,14 @@ este repaso, y si el módulo completo quedó firme, marcalo como completado.
 | 16.4 | CloudTrail como sistema de auditoría, y por qué importa en regiones que ni usás | La configuración también se puede vigilar en tiempo real, no solo las acciones |
 | 16.5 | AWS Config para detección de misconfiguraciones en tiempo real + Security Hub como centralizador | Ya tenés todo para levantar una cuenta con el baseline correcto |
 
+**Detalle por sesión (objetivo, prerrequisitos, conceptos nuevos):**
+
+- **16.1** — *Objetivo:* Explicar con precisión técnica dónde está la frontera real del shared responsibility model en EC2, Lambda, RDS y S3. *Prerrequisitos:* Chequeo de bases Fase 4→5 aprobado; primera sesión de Fase 5. *Conceptos nuevos:* shared responsibility model.
+- **16.2** — *Objetivo:* Explicar AWS Organizations, SCPs y Control Tower como arquitectura de gobierno multi-cuenta. *Prerrequisitos:* Shared responsibility (16.1). *Conceptos nuevos:* AWS Organizations, SCP, Control Tower.
+- **16.3** — *Objetivo:* Explicar el modelo de recursos de AWS: ARN, políticas basadas en identidad vs recurso, condiciones. *Prerrequisitos:* Gobierno multi-cuenta (16.2). *Conceptos nuevos:* ARN, política basada en identidad vs recurso.
+- **16.4** — *Objetivo:* Explicar CloudTrail como sistema de auditoría y por qué importa incluso en regiones que no se usan. *Prerrequisitos:* Modelo de recursos (16.3). *Conceptos nuevos:* CloudTrail.
+- **16.5** — *Objetivo:* Explicar AWS Config para detección de misconfiguraciones en tiempo real y Security Hub como centralizador. *Prerrequisitos:* CloudTrail (16.4). *Conceptos nuevos:* AWS Config, Security Hub.
+
 **Lab del módulo (1-2 sesiones aparte):** cuenta AWS free tier desde cero — MFA en root y usuario IAM, usuario de mínimo privilegio (no root), CloudTrail multi-región, billing alarm, AWS Config con reglas básicas. Documentar cada decisión con su justificación.
 
 ---
@@ -539,6 +674,14 @@ este repaso, y si el módulo completo quedó firme, marcalo como completado.
 | 17.3 | Privilege escalation en AWS: `iam:PassRole` + `ec2:RunInstances` como vector clásico | Otras dos técnicas documentadas hacen lo mismo por caminos distintos |
 | 17.4 | Más vectores: `iam:CreatePolicyVersion`, `lambda:InvokeFunction` sobre funciones con rol privilegiado | Las credenciales no siempre están donde uno espera buscarlas |
 | 17.5 | Credential exposure: metadata service de EC2 (IMDSv1 vs IMDSv2), env vars en Lambda, SSM Parameter Store | Ya tenés todo para mapear rutas de escalación reales |
+
+**Detalle por sesión (objetivo, prerrequisitos, conceptos nuevos):**
+
+- **17.1** — *Objetivo:* Explicar la anatomía completa de una política IAM: Effect, Action, Resource, Condition, y los wildcards peligrosos. *Prerrequisitos:* Modelo de recursos AWS (16.3); primera sesión del módulo. *Conceptos nuevos:* política IAM, Effect/Action/Resource/Condition, wildcard.
+- **17.2** — *Objetivo:* Explicar el modelo de evaluación de políticas de AWS: orden de Allow/Deny, precedencia de SCPs. *Prerrequisitos:* Anatomía de política IAM (17.1). *Conceptos nuevos:* evaluación Allow/Deny, precedencia de SCP.
+- **17.3** — *Objetivo:* Explicar el vector clásico de privilege escalation en AWS vía iam:PassRole + ec2:RunInstances. *Prerrequisitos:* Evaluación de políticas (17.2). *Conceptos nuevos:* privilege escalation AWS, iam:PassRole, ec2:RunInstances.
+- **17.4** — *Objetivo:* Explicar otros vectores de privilege escalation: iam:CreatePolicyVersion, lambda:InvokeFunction sobre roles privilegiados. *Prerrequisitos:* PassRole+RunInstances (17.3). *Conceptos nuevos:* iam:CreatePolicyVersion, lambda:InvokeFunction.
+- **17.5** — *Objetivo:* Explicar dónde quedan expuestas credenciales en AWS: metadata service de EC2 (IMDSv1 vs IMDSv2), env vars en Lambda, SSM Parameter Store. *Prerrequisitos:* Otros vectores de escalación (17.4). *Conceptos nuevos:* IMDSv1/IMDSv2, SSM Parameter Store, credential exposure.
 
 **Lab del módulo (2 sesiones aparte):** usuario con política deliberadamente mal configurada — mapear privilege escalation paths con Pacu o AWS CLI manual, demostrar al menos 2 rutas hacia AdministratorAccess, luego diseñar la política de mínimo privilegio que las elimine sin romper funcionalidad legítima.
 
@@ -554,6 +697,14 @@ este repaso, y si el módulo completo quedó firme, marcalo como completado.
 | 18.4 | VPC Peering y Transit Gateway: los riesgos de conectividad transitiva + PrivateLink como modelo correcto | El endpoint de metadatos vuelve a aparecer, ahora en el contexto de red |
 | 18.5 | SSRF hacia el metadata service de EC2 como el vector más crítico en cloud | Ya tenés todo para desplegar y verificar una arquitectura segmentada real |
 
+**Detalle por sesión (objetivo, prerrequisitos, conceptos nuevos):**
+
+- **18.1** — *Objetivo:* Explicar cómo el CIDR/routing/segmentación de Fase 1 se aplica en una VPC como red definida por software. *Prerrequisitos:* Subnetting/routing (Módulo 2); primera sesión del módulo. *Conceptos nuevos:* VPC, red definida por software.
+- **18.2** — *Objetivo:* Explicar la diferencia entre Security Groups (stateful, nivel instancia) y NACLs (stateless, nivel subnet). *Prerrequisitos:* VPC (18.1). *Conceptos nuevos:* Security Group, NACL, stateful vs stateless.
+- **18.3** — *Objetivo:* Explicar el formato completo de VPC Flow Logs y cómo se usan para detectar reconnaissance y exfiltración. *Prerrequisitos:* Security Groups/NACLs (18.2). *Conceptos nuevos:* VPC Flow Logs.
+- **18.4** — *Objetivo:* Explicar los riesgos de conectividad transitiva en VPC Peering y Transit Gateway, y por qué PrivateLink es el modelo correcto. *Prerrequisitos:* VPC Flow Logs (18.3). *Conceptos nuevos:* VPC Peering, Transit Gateway, PrivateLink.
+- **18.5** — *Objetivo:* Explicar por qué el SSRF hacia el metadata service de EC2 es el vector más crítico en cloud. *Prerrequisitos:* Conectividad transitiva (18.4); SSRF (Módulo 6.3). *Conceptos nuevos:* SSRF hacia metadata service en el contexto de red.
+
 **Lab del módulo (2 sesiones aparte):** VPC de 3 tiers con Terraform (pública+ALB, privada+EC2, aislada+RDS), security groups de mínimo privilegio, demostrar con AWS CLI que comprometer el ALB no da acceso directo a RDS, VPC Flow Logs como evidencia.
 
 ---
@@ -566,6 +717,13 @@ este repaso, y si el módulo completo quedó firme, marcalo como completado.
 | 19.2 | Análisis del caso Capital One 2019: SSRF + S3 público = brecha masiva | Un ataque cloud sigue una secuencia predecible de pasos |
 | 19.3 | La kill chain en un ataque cloud: recon OSINT → credential discovery → initial access → priv esc → persistence → exfiltración | Hay herramientas hechas específicamente para automatizar esta cadena |
 | 19.4 | Arsenal ofensivo cloud: Pacu (explotación AWS), ScoutSuite (auditoría), Prowler (compliance) | Ya tenés toda la teoría — ahora se ejecuta la kill chain completa |
+
+**Detalle por sesión (objetivo, prerrequisitos, conceptos nuevos):**
+
+- **19.1** — *Objetivo:* Reconocer los errores más frecuentes en producción real: S3 públicos, Lambda con secretos en env vars, RDS público, security groups 0.0.0.0/0 en SSH/RDP. *Prerrequisitos:* IAM (Módulo 17) y VPC (Módulo 18); primera sesión del módulo. *Conceptos nuevos:* misconfiguraciones cloud frecuentes.
+- **19.2** — *Objetivo:* Analizar el caso Capital One 2019 como ejemplo de SSRF + S3 público = brecha masiva. *Prerrequisitos:* Errores frecuentes (19.1). *Conceptos nuevos:* caso Capital One 2019.
+- **19.3** — *Objetivo:* Explicar la kill chain completa de un ataque cloud: recon OSINT → credential discovery → initial access → priv esc → persistence → exfiltración. *Prerrequisitos:* Caso Capital One (19.2). *Conceptos nuevos:* kill chain cloud.
+- **19.4** — *Objetivo:* Explicar para qué sirve cada herramienta del arsenal ofensivo cloud: Pacu, ScoutSuite, Prowler. *Prerrequisitos:* Kill chain (19.3). *Conceptos nuevos:* Pacu, ScoutSuite, Prowler.
 
 **Lab del módulo (2-3 sesiones aparte):** CloudGoat o flaws.cloud — desde una clave IAM expuesta con permisos limitados, completar la kill chain hasta exfiltrar datos de un S3 privado. Cada paso documentado con comando exacto, respuesta de la API, y qué debería haber detectado un Blue Team en CloudTrail.
 
@@ -580,6 +738,14 @@ este repaso, y si el módulo completo quedó firme, marcalo como completado.
 | 20.3 | Security Hub para correlación de findings | La respuesta a incidentes en cloud tiene las mismas 5 fases, pero se ven distinto |
 | 20.4 | Incident response: las 5 fases clásicas aplicadas a cloud, diferencias con IR tradicional | Se puede investigar sin apagar nada, incluso la memoria |
 | 20.5 | Forensics en cloud: adquisición de evidencia sin apagar la instancia, snapshots EBS | Ya tenés todo para investigar 72 horas de ataque solo con logs |
+
+**Detalle por sesión (objetivo, prerrequisitos, conceptos nuevos):**
+
+- **20.1** — *Objetivo:* Explicar por qué los IOCs tradicionales (hashes, IPs) valen menos que los IOBs (Indicators of Behavior) en infraestructura efímera. *Prerrequisitos:* Kill chain cloud (19.3); primera sesión del módulo. *Conceptos nuevos:* IOC vs IOB, infraestructura efímera.
+- **20.2** — *Objetivo:* Explicar cómo GuardDuty analiza VPC Flow Logs + CloudTrail + DNS para generar findings. *Prerrequisitos:* IOC vs IOB (20.1). *Conceptos nuevos:* GuardDuty.
+- **20.3** — *Objetivo:* Explicar cómo Security Hub correlaciona findings de varios servicios. *Prerrequisitos:* GuardDuty (20.2). *Conceptos nuevos:* Security Hub (correlación).
+- **20.4** — *Objetivo:* Explicar las 5 fases clásicas de incident response aplicadas a cloud y sus diferencias con IR tradicional. *Prerrequisitos:* Security Hub (20.3). *Conceptos nuevos:* 5 fases de IR, diferencias cloud vs tradicional.
+- **20.5** — *Objetivo:* Explicar cómo adquirir evidencia forense en cloud sin apagar la instancia, usando snapshots EBS. *Prerrequisitos:* IR en cloud (20.4). *Conceptos nuevos:* forensics en cloud, snapshot EBS.
 
 **Lab del módulo (2-3 sesiones aparte, cierre del programa):** CloudTrail logs (JSON) de un ataque de 72h — queries en Athena/jq para identificar primer acceso, reconstruir secuencia completa, determinar recursos/datos comprometidos, escribir reglas de detección (EventBridge/GuardDuty custom). Informe de IR completo como entregable final.
 
