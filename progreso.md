@@ -1,7 +1,7 @@
 # Progreso — Roadmap Cloud Security
 
-**Última sesión completada:** 1.1 — Three-way handshake (Módulo 1) — 2026-08-04
-**Próxima sesión a hacer:** 1.2 (Módulo 1 — ver orden de refuerzo abajo).
+**Última sesión completada:** 1.2 — Session hijacking + anatomía de flags (Módulo 1) — 2026-08-05
+**Próxima sesión a hacer:** 1.3 (Módulo 1 — ver orden de refuerzo abajo).
 
 Con el cierre del bloque de 4 repasos de verificación (1.rev-4.rev), ningún módulo quedó
 firme — los 4 requieren refuerzo puntual antes de seguir con el roadmap normal (Módulo 5 en
@@ -152,6 +152,7 @@ Agregá una línea a la tabla de abajo. Sesiones de teoría (ej. "1.3") van con 
 | Sesión | Tipo | Fecha | Una frase de lo que quedó / se avanzó | Notas |
 |---|---|---|---|---|
 | 1.1 | Teoría | 2026-08-04 | Three-way handshake: mecanismo de ISN y por qué hacen falta 3 pasos — sólido, cálculo de ack correcto en las 2 direcciones del ejercicio | Etiquetó el número de ACK como "seq" (valor correcto, nombre no) — repasar la distinción antes de sumar flags nuevas en 1.2 |
+| 1.2 | Teoría | 2026-08-05 | Hijacking on-path/off-path y anatomía de flags TCP (SYN/ACK/FIN/RST/PSH/URG) — sólido en los dos bloques | Confundió el rol de ACK con "confirmar el handshake" específicamente (es confirmación general, no atada al handshake); no especificó de cuál parte es el ISN a adivinar en off-path (es el de quien responde, no el propio) — ambas corregidas sin repetir la clase |
 
 ---
 
