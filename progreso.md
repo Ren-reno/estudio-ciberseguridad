@@ -1,11 +1,19 @@
 # Progreso — Roadmap Cloud Security
 
 **Última sesión completada:** 4.rev — Repaso de Verificación Módulo 4 (Linux) — 2026-07-22
-**Próxima sesión a hacer:** con esto se completa el bloque de 4 repasos de verificación
-(1.rev-4.rev). Ningún módulo quedó firme — los 4 requieren refuerzo puntual antes de seguir
-con el roadmap normal (Módulo 5 en adelante): Módulo 1 (sesiones 1.1-1.3), Módulo 2
-(sesiones 2.2, 2.5-2.6), Módulo 3 (sesiones 3.2, 3.5-3.6), Módulo 4 completo (sesiones
-4.1-4.6, por decisión del usuario dado el resultado 0/3 — ver detalle en checklist abajo).
+**Próxima sesión a hacer:** 1.1 (Módulo 1 — ver orden de refuerzo abajo).
+
+Con el cierre del bloque de 4 repasos de verificación (1.rev-4.rev), ningún módulo quedó
+firme — los 4 requieren refuerzo puntual antes de seguir con el roadmap normal (Módulo 5 en
+adelante). Orden de ataque, del más al menos fundacional (para que ninguna sesión nueva
+tenga que adivinarlo ni elegir por inercia):
+
+1. **Módulo 1** (sesiones 1.1-1.3) — el más fundacional; los huecos de Módulos 2-4 se apoyan
+   en estos conceptos.
+2. **Módulo 2** (sesiones 2.2, 2.5-2.6)
+3. **Módulo 3** (sesiones 3.2, 3.5-3.6)
+4. **Módulo 4 completo** (sesiones 4.1-4.6, por decisión del usuario dado el resultado 0/3 —
+   ver detalle en checklist abajo)
 
 ---
 

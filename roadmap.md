@@ -47,6 +47,18 @@ pase, en vez de inventar o asumir contenido que no tenés.
 Mirá la fila "Próxima sesión a hacer" de progreso.md para saber en qué sesión voy,
 y el roadmap para ver el contenido exacto de esa fila (columna "Contenido de la sesión").
 
+Si progreso.md tiene, para el módulo de hoy, un diagnóstico concepto por concepto de una
+sesión de verificación previa, leelo y usalo para calibrar: lo marcado como "sin cobertura
+previa" hay que definirlo desde cero; lo marcado como impreciso hay que corregir
+puntualmente, no repetir la clase completa.
+
+Arrancá SIEMPRE por la versión más elemental posible, no la completa. No asumas vocabulario
+técnico que no haya aparecido antes en mi progreso.md o en esta misma sesión — la primera
+vez que uses un término nuevo, definilo en una frase simple antes de construir algo sobre
+él. Subí la dificultad de a poco dentro de la sesión, no de entrada. Si notás que vas a
+meter más de 2-3 conceptos nuevos seguidos, parate y preguntame si hace falta desglosarlo
+más.
+
 Vamos a hacer esa sesión. El contenido de HOY es únicamente lo que dice esa fila —
 no el módulo completo, no lo que sigue después.
 
@@ -276,6 +288,14 @@ este repaso, y si el módulo completo quedó firme, marcalo como completado.
 | 1.3 | Weaponización de flags: SYN flood, RST injection, idle scan con Nmap | ¿Por qué UDP no tiene nada de esto? |
 | 1.4 | TCP stateful vs UDP stateless, y por qué esto importa en firewalls | Los sistemas se pueden identificar por cómo responden... |
 | 1.5 | IP TTL como fingerprinting de sistemas operativos + fragmentación como evasión de IDS | Ya tenés toda la teoría — ahora se construye |
+
+**Detalle por sesión (objetivo, prerrequisitos, conceptos nuevos) — plantilla nueva, se aplica de acá en adelante a medida que se arman los módulos siguientes:**
+
+- **1.1** — *Objetivo:* explicar en tus palabras por qué el three-way handshake sincroniza números de secuencia y no es solo un saludo de conexión. *Prerrequisitos:* ninguno formal (primera sesión del módulo) — pero la verificación de julio 2026 mostró que el handshake se conocía solo de nombre, sin el mecanismo; arrancar resumiéndolo en 2-3 líneas antes de construir sobre él. *Conceptos nuevos:* three-way handshake, número de secuencia (ISN), sincronización de estado en TCP.
+- **1.2** — *Objetivo:* explicar qué es la predicción de ISN y qué hace cada flag (SYN/ACK/FIN/RST/PSH/URG) de un segmento TCP. *Prerrequisitos:* handshake y número de secuencia (1.1). La verificación dio 0/3 en session hijacking — no dar por sabida la distinción on-path/off-path, definirla explícitamente. *Conceptos nuevos:* predicción de ISN, hijacking on-path vs off-path, flags TCP.
+- **1.3** — *Objetivo:* explicar el mecanismo real de un SYN flood (no solo "satura la red") y qué hacen RST injection e idle scan. *Prerrequisitos:* flags TCP y su función normal (1.2). La verificación mostró el SYN flood explicado como "agota la red" en vez de "agota el backlog de conexiones semiabiertas" — corregir esa imprecisión de forma explícita, no repetirla. *Conceptos nuevos:* SYN flood (backlog de conexiones semiabiertas), RST injection, idle scan.
+- **1.4** — *Objetivo:* explicar por qué un firewall trata TCP y UDP distinto, y qué implica para las reglas que se escriben. *Prerrequisitos:* flags y comportamiento de conexión de TCP (1.1-1.3). *Conceptos nuevos:* TCP stateful, UDP stateless, tabla de estados de un firewall.
+- **1.5** — *Objetivo:* explicar cómo el TTL de un paquete IP identifica el sistema operativo de origen, y cómo la fragmentación evade un IDS. *Prerrequisitos:* conceptos básicos de IP; si "IDS" no se definió antes, definirlo en una frase antes de hablar de evadirlo. *Conceptos nuevos:* TTL como fingerprint de SO, fragmentación IP como evasión de IDS.
 
 **Lab del módulo (2-3 sesiones aparte):** scanner de puertos con raw sockets en Python, sin librerías de alto nivel, comparado en paralelo con Wireshark sobre una VM local.
 
